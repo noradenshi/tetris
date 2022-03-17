@@ -25,6 +25,4 @@ D:\noradenshi\source\repos\tetris\tetris\Grid.cpp(70,51): warning C4244: 'argume
           [
               T=float
           ]
-  Main.cpp
-  Generating Code...
   tetris.vcxproj -> D:\noradenshi\source\repos\tetris\Debug\tetris.exe

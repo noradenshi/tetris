@@ -35,7 +35,7 @@ class Grid : public sf::Drawable {
 	Piece m_piece;
 	PiecePreview m_preview;
 
-	const float m_gravity = 1000;
+	const float m_gravity = 800;
 	float m_gravityTimer = m_gravity * 2; // entry delay
 	const sf::Time m_lockDelayTime = sf::milliseconds(100);
 	sf::Time m_lockDelay;

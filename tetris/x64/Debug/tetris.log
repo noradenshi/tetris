@@ -1,23 +1,177 @@
-﻿Main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::String::String(char const *,class std::locale const &)" (__imp_??0String@sf@@QEAA@PEBDAEBVlocale@std@@@Z) referenced in function main
-Main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::String::~String(void)" (__imp_??1String@sf@@QEAA@XZ) referenced in function main
+﻿  Grid.cpp
+D:\noradenshi\source\repos\tetris\tetris\Grid.cpp(21,67): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\noradenshi\source\repos\tetris\tetris\Grid.cpp(21,53): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\noradenshi\source\repos\tetris\tetris\Grid.cpp(28,52): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\noradenshi\source\repos\tetris\tetris\Grid.cpp(61,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\noradenshi\source\repos\tetris\tetris\Grid.cpp(70,65): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\noradenshi\source\repos\tetris\tetris\Grid.cpp(70,51): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  Main.cpp
+  Piece.cpp
+D:\noradenshi\source\repos\tetris\tetris\Piece.cpp(113,80): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\noradenshi\source\repos\tetris\tetris\Piece.cpp(113,50): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\noradenshi\source\repos\tetris\tetris\Piece.cpp(114,86): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\noradenshi\source\repos\tetris\tetris\Piece.cpp(114,56): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\noradenshi\source\repos\tetris\tetris\Piece.cpp(115,92): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\noradenshi\source\repos\tetris\tetris\Piece.cpp(115,56): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\noradenshi\source\repos\tetris\tetris\Piece.cpp(116,86): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\noradenshi\source\repos\tetris\tetris\Piece.cpp(116,50): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\noradenshi\source\repos\tetris\tetris\Piece.cpp(119,55): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+D:\noradenshi\source\repos\tetris\tetris\Piece.cpp(120,78): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+D:\noradenshi\source\repos\tetris\tetris\Piece.cpp(120,55): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+D:\noradenshi\source\repos\tetris\tetris\Piece.cpp(121,58): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+  Generating Code...
+Grid.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::Time::Time(void)" (__imp_??0Time@sf@@QEAA@XZ) referenced in function "public: __cdecl Grid::Grid(void)" (??0Grid@@QEAA@XZ)
+Main.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::Time::Time(void)" (__imp_??0Time@sf@@QEAA@XZ)
+Grid.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: int __cdecl sf::Time::asMilliseconds(void)const " (__imp_?asMilliseconds@Time@sf@@QEBAHXZ) referenced in function "public: void __cdecl Grid::update(class sf::Time &)" (?update@Grid@@QEAAXAEAVTime@sf@@@Z)
+Grid.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) class sf::Time __cdecl sf::milliseconds(int)" (__imp_?milliseconds@sf@@YA?AVTime@1@H@Z) referenced in function "public: __cdecl Grid::Grid(void)" (??0Grid@@QEAA@XZ)
+Grid.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) bool __cdecl sf::operator<=(class sf::Time,class sf::Time)" (__imp_??Nsf@@YA_NVTime@0@0@Z) referenced in function "public: void __cdecl Grid::move(enum Direction)" (?move@Grid@@QEAAXW4Direction@@@Z)
+Grid.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) class sf::Time & __cdecl sf::operator-=(class sf::Time &,class sf::Time)" (__imp_??Zsf@@YAAEAVTime@0@AEAV10@V10@@Z) referenced in function "public: void __cdecl Grid::update(class sf::Time &)" (?update@Grid@@QEAAXAEAVTime@sf@@@Z)
+Grid.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: virtual __cdecl sf::Drawable::~Drawable(void)" (__imp_??1Drawable@sf@@UEAA@XZ) referenced in function "int `public: __cdecl Grid::Grid(void)'::`1'::dtor$0" (?dtor$0@?0???0Grid@@QEAA@XZ@4HA)
+Main.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: virtual __cdecl sf::Drawable::~Drawable(void)" (__imp_??1Drawable@sf@@UEAA@XZ)
+Piece.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: virtual __cdecl sf::Drawable::~Drawable(void)" (__imp_??1Drawable@sf@@UEAA@XZ)
+Grid.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::Drawable::Drawable(void)" (__imp_??0Drawable@sf@@QEAA@XZ) referenced in function "public: __cdecl Grid::Grid(void)" (??0Grid@@QEAA@XZ)
+Piece.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::Drawable::Drawable(void)" (__imp_??0Drawable@sf@@QEAA@XZ)
+Grid.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::Drawable::Drawable(class sf::Drawable const &)" (__imp_??0Drawable@sf@@QEAA@AEBV01@@Z) referenced in function "public: __cdecl GridCell::GridCell(class GridCell &&)" (??0GridCell@@QEAA@$$QEAV0@@Z)
+Grid.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: class sf::Drawable & __cdecl sf::Drawable::operator=(class sf::Drawable const &)" (__imp_??4Drawable@sf@@QEAAAEAV01@AEBV01@@Z) referenced in function "public: class GridCell & __cdecl GridCell::operator=(class GridCell &&)" (??4GridCell@@QEAAAEAV0@$$QEAV0@@Z)
+Grid.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: virtual __cdecl sf::Transformable::~Transformable(void)" (__imp_??1Transformable@sf@@UEAA@XZ) referenced in function "public: virtual __cdecl PiecePreview::~PiecePreview(void)" (??1PiecePreview@@UEAA@XZ)
+Main.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: virtual __cdecl sf::Transformable::~Transformable(void)" (__imp_??1Transformable@sf@@UEAA@XZ)
+Piece.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: virtual __cdecl sf::Transformable::~Transformable(void)" (__imp_??1Transformable@sf@@UEAA@XZ)
+Grid.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: void __cdecl sf::Transformable::setPosition(class sf::Vector2<float> const &)" (__imp_?setPosition@Transformable@sf@@QEAAXAEBV?$Vector2@M@2@@Z) referenced in function "public: __cdecl Grid::Grid(void)" (??0Grid@@QEAA@XZ)
+Grid.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::Color::Color(unsigned char,unsigned char,unsigned char,unsigned char)" (__imp_??0Color@sf@@QEAA@EEEE@Z) referenced in function "public: void __cdecl GridCell::setState(bool)" (?setState@GridCell@@QEAAX_N@Z)
+Main.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::Color::Color(unsigned char,unsigned char,unsigned char,unsigned char)" (__imp_??0Color@sf@@QEAA@EEEE@Z)
+Piece.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::Color::Color(unsigned char,unsigned char,unsigned char,unsigned char)" (__imp_??0Color@sf@@QEAA@EEEE@Z)
+Grid.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: virtual __cdecl sf::VertexArray::~VertexArray(void)" (__imp_??1VertexArray@sf@@UEAA@XZ) referenced in function "public: virtual __cdecl PiecePreview::~PiecePreview(void)" (??1PiecePreview@@UEAA@XZ)
+Main.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: virtual __cdecl sf::VertexArray::~VertexArray(void)" (__imp_??1VertexArray@sf@@UEAA@XZ)
+Piece.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: virtual __cdecl sf::VertexArray::~VertexArray(void)" (__imp_??1VertexArray@sf@@UEAA@XZ)
+Grid.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: void __cdecl sf::Shape::setTexture(class sf::Texture const *,bool)" (__imp_?setTexture@Shape@sf@@QEAAXPEBVTexture@2@_N@Z) referenced in function "public: void __cdecl GridCell::setTexture(class sf::Texture *)" (?setTexture@GridCell@@QEAAXPEAVTexture@sf@@@Z)
+Grid.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: void __cdecl sf::Shape::setFillColor(class sf::Color const &)" (__imp_?setFillColor@Shape@sf@@QEAAXAEBVColor@2@@Z) referenced in function "public: __cdecl GridCell::GridCell(void)" (??0GridCell@@QEAA@XZ)
+Grid.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::Texture::Texture(void)" (__imp_??0Texture@sf@@QEAA@XZ) referenced in function "public: __cdecl std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const ,class sf::Texture>::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const ,class sf::Texture><class std::tuple<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > &&>,class std::tuple<>,0>(class std::tuple<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > &&> &,class std::tuple<> &,struct std::integer_sequence<unsigned __int64,0>,struct std::integer_sequence<unsigned __int64>)" (??$?0V?$tuple@$$QEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@V?$tuple@$$V@1@$0A@$$Z$S@?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VTexture@sf@@@std@@QEAA@AEAV?$tuple@$$QEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@1@AEAV?$tuple@$$V@1@U?$integer_sequence@_K$0A@@1@U?$integer_sequence@_K$S@1@@Z)
+Piece.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::Texture::Texture(void)" (__imp_??0Texture@sf@@QEAA@XZ)
+Grid.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::Texture::~Texture(void)" (__imp_??1Texture@sf@@QEAA@XZ) referenced in function "public: __cdecl std::pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const ,class sf::Texture>::~pair<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const ,class sf::Texture>(void)" (??1?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VTexture@sf@@@std@@QEAA@XZ)
+Main.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::Texture::~Texture(void)" (__imp_??1Texture@sf@@QEAA@XZ)
+Piece.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::Texture::~Texture(void)" (__imp_??1Texture@sf@@QEAA@XZ)
+Grid.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: bool __cdecl sf::Texture::loadFromFile(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class sf::Rect<int> const &)" (__imp_?loadFromFile@Texture@sf@@QEAA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBV?$Rect@H@2@@Z) referenced in function "public: __cdecl Grid::Grid(void)" (??0Grid@@QEAA@XZ)
+Grid.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::RectangleShape::RectangleShape(class sf::Vector2<float> const &)" (__imp_??0RectangleShape@sf@@QEAA@AEBV?$Vector2@M@1@@Z) referenced in function "public: __cdecl GridCell::GridCell(void)" (??0GridCell@@QEAA@XZ)
+Grid.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: void __cdecl sf::RectangleShape::setSize(class sf::Vector2<float> const &)" (__imp_?setSize@RectangleShape@sf@@QEAAXAEBV?$Vector2@M@2@@Z) referenced in function "public: void __cdecl GridCell::setSize(float)" (?setSize@GridCell@@QEAAXM@Z)
+Grid.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: virtual __cdecl sf::RectangleShape::~RectangleShape(void)" (__imp_??1RectangleShape@sf@@UEAA@XZ) referenced in function "int `public: __cdecl GridCell::GridCell(void)'::`1'::dtor$1" (?dtor$1@?0???0GridCell@@QEAA@XZ@4HA)
+Main.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: virtual __cdecl sf::RectangleShape::~RectangleShape(void)" (__imp_??1RectangleShape@sf@@UEAA@XZ)
+Grid.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::RectangleShape::RectangleShape(class sf::RectangleShape const &)" (__imp_??0RectangleShape@sf@@QEAA@AEBV01@@Z) referenced in function "public: __cdecl GridCell::GridCell(class GridCell const &)" (??0GridCell@@QEAA@AEBV0@@Z)
+Grid.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::RectangleShape::RectangleShape(class sf::RectangleShape &&)" (__imp_??0RectangleShape@sf@@QEAA@$$QEAV01@@Z) referenced in function "public: __cdecl GridCell::GridCell(class GridCell &&)" (??0GridCell@@QEAA@$$QEAV0@@Z)
+Grid.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: class sf::RectangleShape & __cdecl sf::RectangleShape::operator=(class sf::RectangleShape &&)" (__imp_??4RectangleShape@sf@@QEAAAEAV01@$$QEAV01@@Z) referenced in function "public: class GridCell & __cdecl GridCell::operator=(class GridCell &&)" (??4GridCell@@QEAAAEAV0@$$QEAV0@@Z)
+Grid.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: void __cdecl sf::RenderTarget::draw(class sf::Drawable const &,class sf::RenderStates const &)" (__imp_?draw@RenderTarget@sf@@QEAAXAEBVDrawable@2@AEBVRenderStates@2@@Z) referenced in function "private: virtual void __cdecl Grid::draw(class sf::RenderTarget &,class sf::RenderStates)const " (?draw@Grid@@EEBAXAEAVRenderTarget@sf@@VRenderStates@3@@Z)
+Main.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: void __cdecl sf::RenderTarget::draw(class sf::Drawable const &,class sf::RenderStates const &)" (__imp_?draw@RenderTarget@sf@@QEAAXAEBVDrawable@2@AEBVRenderStates@2@@Z)
+Piece.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: void __cdecl sf::RenderTarget::draw(class sf::Drawable const &,class sf::RenderStates const &)" (__imp_?draw@RenderTarget@sf@@QEAAXAEBVDrawable@2@AEBVRenderStates@2@@Z)
+Grid.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: static class sf::RenderStates const sf::RenderStates::Default" (__imp_?Default@RenderStates@sf@@2V12@B) referenced in function "private: virtual void __cdecl Grid::draw(class sf::RenderTarget &,class sf::RenderStates)const " (?draw@Grid@@EEBAXAEAVRenderTarget@sf@@VRenderStates@3@@Z)
+Main.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: static class sf::RenderStates const sf::RenderStates::Default" (__imp_?Default@RenderStates@sf@@2V12@B)
+Grid.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: static class sf::Color const sf::Color::White" (__imp_?White@Color@sf@@2V12@B) referenced in function "public: __cdecl GridCell::GridCell(void)" (??0GridCell@@QEAA@XZ)
+Main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: void __cdecl sf::RenderTarget::clear(class sf::Color const &)" (__imp_?clear@RenderTarget@sf@@QEAAXAEBVColor@2@@Z) referenced in function main
 Main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::VideoMode::VideoMode(unsigned int,unsigned int,unsigned int)" (__imp_??0VideoMode@sf@@QEAA@III@Z) referenced in function main
+Main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::Clock::Clock(void)" (__imp_??0Clock@sf@@QEAA@XZ) referenced in function main
+Main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: class sf::Time __cdecl sf::Clock::restart(void)" (__imp_?restart@Clock@sf@@QEAA?AVTime@2@XZ) referenced in function main
+Main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::String::String(char const *,class std::locale const &)" (__imp_??0String@sf@@QEAA@PEBDAEBVlocale@std@@@Z) referenced in function main
+Main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::String::~String(void)" (__imp_??1String@sf@@QEAA@XZ) referenced in function main
+Main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: void __cdecl sf::Window::close(void)" (__imp_?close@Window@sf@@QEAAXXZ) referenced in function main
 Main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: bool __cdecl sf::Window::isOpen(void)const " (__imp_?isOpen@Window@sf@@QEBA_NXZ) referenced in function main
 Main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: bool __cdecl sf::Window::pollEvent(class sf::Event &)" (__imp_?pollEvent@Window@sf@@QEAA_NAEAVEvent@2@@Z) referenced in function main
 Main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: void __cdecl sf::Window::display(void)" (__imp_?display@Window@sf@@QEAAXXZ) referenced in function main
-Main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: virtual __cdecl sf::Drawable::~Drawable(void)" (__imp_??1Drawable@sf@@UEAA@XZ) referenced in function "int `public: __cdecl Grid::Grid(void)'::`1'::dtor$0" (?dtor$0@?0???0Grid@@QEAA@XZ@4HA)
-Main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::Drawable::Drawable(void)" (__imp_??0Drawable@sf@@QEAA@XZ) referenced in function "public: __cdecl Grid::Grid(void)" (??0Grid@@QEAA@XZ)
-Main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::Drawable::Drawable(class sf::Drawable const &)" (__imp_??0Drawable@sf@@QEAA@AEBV01@@Z) referenced in function "public: __cdecl GridCell::GridCell(class GridCell const &)" (??0GridCell@@QEAA@AEBV0@@Z)
-Main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::Color::Color(unsigned char,unsigned char,unsigned char,unsigned char)" (__imp_??0Color@sf@@QEAA@EEEE@Z) referenced in function main
-Main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: virtual __cdecl sf::RectangleShape::~RectangleShape(void)" (__imp_??1RectangleShape@sf@@UEAA@XZ) referenced in function "public: virtual __cdecl GridCell::~GridCell(void)" (??1GridCell@@UEAA@XZ)
-Main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::RectangleShape::RectangleShape(class sf::RectangleShape const &)" (__imp_??0RectangleShape@sf@@QEAA@AEBV01@@Z) referenced in function "public: __cdecl GridCell::GridCell(class GridCell const &)" (??0GridCell@@QEAA@AEBV0@@Z)
-Main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: void __cdecl sf::RenderTarget::clear(class sf::Color const &)" (__imp_?clear@RenderTarget@sf@@QEAAXAEBVColor@2@@Z) referenced in function main
-Main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: void __cdecl sf::RenderTarget::draw(class sf::Drawable const &,class sf::RenderStates const &)" (__imp_?draw@RenderTarget@sf@@QEAAXAEBVDrawable@2@AEBVRenderStates@2@@Z) referenced in function "private: virtual void __cdecl Grid::draw(class sf::RenderTarget &,class sf::RenderStates)const " (?draw@Grid@@EEBAXAEAVRenderTarget@sf@@VRenderStates@3@@Z)
 Main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::RenderWindow::RenderWindow(class sf::VideoMode,class sf::String const &,unsigned int,struct sf::ContextSettings const &)" (__imp_??0RenderWindow@sf@@QEAA@VVideoMode@1@AEBVString@1@IAEBUContextSettings@1@@Z) referenced in function main
 Main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: virtual __cdecl sf::RenderWindow::~RenderWindow(void)" (__imp_??1RenderWindow@sf@@UEAA@XZ) referenced in function main
-Main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: static class sf::RenderStates const sf::RenderStates::Default" (__imp_?Default@RenderStates@sf@@2V12@B) referenced in function "private: virtual void __cdecl Grid::draw(class sf::RenderTarget &,class sf::RenderStates)const " (?draw@Grid@@EEBAXAEAVRenderTarget@sf@@VRenderStates@3@@Z)
+Piece.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) class sf::Transform & __cdecl sf::operator*=(class sf::Transform &,class sf::Transform const &)" (__imp_??Xsf@@YAAEAVTransform@0@AEAV10@AEBV10@@Z) referenced in function "private: virtual void __cdecl PiecePreview::draw(class sf::RenderTarget &,class sf::RenderStates)const " (?draw@PiecePreview@@EEBAXAEAVRenderTarget@sf@@VRenderStates@3@@Z)
+Piece.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::Transformable::Transformable(void)" (__imp_??0Transformable@sf@@QEAA@XZ) referenced in function "public: __cdecl PiecePreview::PiecePreview(void)" (??0PiecePreview@@QEAA@XZ)
+Piece.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: class sf::Transform const & __cdecl sf::Transformable::getTransform(void)const " (__imp_?getTransform@Transformable@sf@@QEBAAEBVTransform@2@XZ) referenced in function "private: virtual void __cdecl PiecePreview::draw(class sf::RenderTarget &,class sf::RenderStates)const " (?draw@PiecePreview@@EEBAXAEAVRenderTarget@sf@@VRenderStates@3@@Z)
+Piece.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::VertexArray::VertexArray(void)" (__imp_??0VertexArray@sf@@QEAA@XZ) referenced in function "public: __cdecl PiecePreview::PiecePreview(void)" (??0PiecePreview@@QEAA@XZ)
+Piece.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: class sf::Vertex & __cdecl sf::VertexArray::operator[](unsigned __int64)" (__imp_??AVertexArray@sf@@QEAAAEAVVertex@1@_K@Z) referenced in function "public: void __cdecl PiecePreview::setFillColor(class sf::Color)" (?setFillColor@PiecePreview@@QEAAXVColor@sf@@@Z)
+Piece.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: void __cdecl sf::VertexArray::resize(unsigned __int64)" (__imp_?resize@VertexArray@sf@@QEAAX_K@Z) referenced in function "public: __cdecl PiecePreview::PiecePreview(void)" (??0PiecePreview@@QEAA@XZ)
+Piece.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: void __cdecl sf::VertexArray::setPrimitiveType(enum sf::PrimitiveType)" (__imp_?setPrimitiveType@VertexArray@sf@@QEAAXW4PrimitiveType@2@@Z) referenced in function "public: __cdecl PiecePreview::PiecePreview(void)" (??0PiecePreview@@QEAA@XZ)
+Piece.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: class sf::Vector2<unsigned int> __cdecl sf::Texture::getSize(void)const " (__imp_?getSize@Texture@sf@@QEBA?AV?$Vector2@I@2@XZ) referenced in function "public: void __cdecl PiecePreview::setPreviewType(enum PieceType)" (?setPreviewType@PiecePreview@@QEAAXW4PieceType@@@Z)
+Piece.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: class sf::Texture & __cdecl sf::Texture::operator=(class sf::Texture const &)" (__imp_??4Texture@sf@@QEAAAEAV01@AEBV01@@Z) referenced in function "public: void __cdecl PiecePreview::setTexture(class sf::Texture &)" (?setTexture@PiecePreview@@QEAAXAEAVTexture@sf@@@Z)
 D:\noradenshi\CPP Libraries\SFML-2.5.1-vc15\lib\sfml-audio-d.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
 D:\noradenshi\CPP Libraries\SFML-2.5.1-vc15\lib\sfml-graphics-d.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
 D:\noradenshi\CPP Libraries\SFML-2.5.1-vc15\lib\sfml-main-d.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
 D:\noradenshi\CPP Libraries\SFML-2.5.1-vc15\lib\sfml-system-d.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
 D:\noradenshi\CPP Libraries\SFML-2.5.1-vc15\lib\sfml-window-d.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
-D:\noradenshi\source\repos\tetris\x64\Debug\tetris.exe : fatal error LNK1120: 17 unresolved externals
+D:\noradenshi\source\repos\tetris\x64\Debug\tetris.exe : fatal error LNK1120: 48 unresolved externals

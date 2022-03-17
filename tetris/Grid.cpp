@@ -40,7 +40,7 @@ void Grid::clearLines() {
 		case 3: m_score += 300 * m_level; break;
 		case 4: m_score += 1200 * m_level; break;
 		}
-		m_level = m_linesCleared / 10 + 1;
+		m_level = m_linesCleared / 10 + 1; 
 		std::cout << "score: " << m_score << std::endl;
 		std::cout << "lines cleared: " << m_linesCleared << std::endl;
 		std::cout << "level: " << m_level << std::endl;
@@ -78,10 +78,10 @@ Grid::Grid() {
 }
 
 void Grid::update(sf::Time& t_deltaTime) {
-	m_gravityTimer -= t_deltaTime.asMilliseconds();
+	m_gravityTimer -= t_deltaTime.asMilliseconds() * m_level;
 	if (m_gravityTimer <= 0.f) {
 		move(Direction::down);
-		m_gravityTimer = m_gravity / m_level;
+		m_gravityTimer = m_gravity;
 	}
 	m_lockDelay -= t_deltaTime;
 }
@@ -110,6 +110,7 @@ void Grid::rotate(bool right) {
 	updateActiveCells();
 	updateCells(true);
 	m_piece.rotate(right);
+	m_isLockable = false;
 
 	if (!isGood()) m_piece.rotate(!right);
 	updateCells(false);
