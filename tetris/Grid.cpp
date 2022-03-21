@@ -13,19 +13,19 @@ void Grid::clearLines() {
 		for (auto cell : m_grid[y]) 
 			if (!cell.isOccupied()) isClearable = false;
 		
-		if (isClearable) {
-			amount++;
-			for (int i = y; i > 0; i--) {
-				std::swap(m_grid[i], m_grid[i - 1]);
-				for (int j = 0; j < width; j++) {
-					m_grid[i][j].setPosition(sf::Vector2f(offset_x + j, offset_y + i));
+			if (isClearable) {
+				amount++;
+				for (int i = y; i > 0; i--) {
+					std::swap(m_grid[i], m_grid[i - 1]);
+					for (int j = 0; j < width; j++) {
+						m_grid[i][j].setPosition(sf::Vector2f(offset_x + j, offset_y + i));
+					}
 				}
-			}
-			for (int j = 0; j < width; j++) {
-				m_grid[0][j] = GridCell();
-				m_grid[0][j].setSize(cell_size);
-				m_grid[0][j].setTexture(&m_textures["cell_background"]);
-				m_grid[0][j].setPosition(sf::Vector2f(offset_x + j, offset_y));
+				for (int j = 0; j < width; j++) {
+					m_grid[0][j] = GridCell();
+					m_grid[0][j].setSize(cell_size);
+					m_grid[0][j].setTexture(&m_textures["cell_background"]);
+					m_grid[0][j].setPosition(sf::Vector2f(offset_x + j, offset_y));
 			}
 		}
 	}
@@ -48,10 +48,12 @@ void Grid::clearLines() {
 }
 
 void Grid::updateCells(bool clear) {
+	const short x = m_piece.getPosition().x;
+	const short y = m_piece.getPosition().y;
+
 	for (int i = 0; i < 4; i++) {
-		const short x = m_piece.getPosition().x;
-		const short y = m_piece.getPosition().y;
 		sf::Vector2s offset = m_piece.getOffset(i);
+		if (y + offset.y < 0) continue;
 		m_grid[y + offset.y][x + offset.x].setTexture((clear) ? &m_textures["cell_background"] : &m_textures["cell_piece"]);
 		m_grid[y + offset.y][x + offset.x].setState(!clear);
 	}
@@ -97,7 +99,8 @@ bool Grid::isGood() {
 	for (auto cell : m_piece) {
 		sf::Vector2i pos = m_piece.getPosition() + sf::Vector2i(cell.getOffset().x, cell.getOffset().y);
 
-		if (pos.x < 0 || pos.y < 0 || pos.x > width - 1 || pos.y > height - 1) return false;
+		if (pos.y < 0) return true; // allow outside of bounds rotations
+		if (pos.x < 0 || pos.x > width - 1 || pos.y > height - 1) return false;
 
 		bool isActive = false;
 		for (auto active_cell : m_activeCells) { if (pos == active_cell) isActive = true; }

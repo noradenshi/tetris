@@ -21,49 +21,49 @@ void Piece::setType(PieceType piece) {
 	m_type = piece;
 	switch (piece) {
 	case PieceType::o:
-		m_cur_pos = { 4, 0 };
+		m_pos = { 4, 0 };
 		m_piece[0].setOffset(0, 0);
 		m_piece[1].setOffset(0, 1);
 		m_piece[2].setOffset(1, 0);
 		m_piece[3].setOffset(1, 1);
 		break;
 	case PieceType::s:
-		m_cur_pos = { 4, 0 };
+		m_pos = { 4, 0 };
 		m_piece[0].setOffset(0, 0);
 		m_piece[1].setOffset(1, 0);
 		m_piece[2].setOffset(0, 1);
 		m_piece[3].setOffset(-1, 1);
 		break;
 	case PieceType::z:
-		m_cur_pos = { 5, 0 };
+		m_pos = { 5, 0 };
 		m_piece[0].setOffset(0, 0);
 		m_piece[1].setOffset(-1, 0);
 		m_piece[2].setOffset(0, 1);
 		m_piece[3].setOffset(1, 1);
 		break;
 	case PieceType::t:
-		m_cur_pos = { 4, 0 };
+		m_pos = { 4, 0 };
 		m_piece[0].setOffset(0, 0);
 		m_piece[1].setOffset(-1, 0);
 		m_piece[2].setOffset(1, 0);
 		m_piece[3].setOffset(0, 1);
 		break;
 	case PieceType::l:
-		m_cur_pos = { 5, 0 };
+		m_pos = { 5, 0 };
 		m_piece[0].setOffset(0, 0);
 		m_piece[1].setOffset(1, 0);
 		m_piece[2].setOffset(-1, 0);
 		m_piece[3].setOffset(-1, 1);
 		break;
 	case PieceType::j:
-		m_cur_pos = { 4, 0 };
+		m_pos = { 4, 0 };
 		m_piece[0].setOffset(0, 0);
 		m_piece[1].setOffset(-1, 0);
 		m_piece[2].setOffset(1, 0);
 		m_piece[3].setOffset(1, 1);
 		break;
 	case PieceType::i:
-		m_cur_pos = { 4, 0 };
+		m_pos = { 4, 0 };
 		m_piece[0].setOffset(0, 0);
 		m_piece[1].setOffset(-1, 0);
 		m_piece[2].setOffset(2, 0);
@@ -83,10 +83,10 @@ void Piece::rotate(bool right) {
 
 void Piece::move(Direction direction) {
 	switch (direction) {
-	case Direction::left: m_cur_pos.x -= 1; break;
-	case Direction::right:m_cur_pos.x += 1; break;
-	case Direction::up: m_cur_pos.y -= 1; break;
-	case Direction::down: m_cur_pos.y += 1; break;
+	case Direction::left: m_pos.x -= 1; break;
+	case Direction::right:m_pos.x += 1; break;
+	case Direction::up: m_pos.y -= 1; break;
+	case Direction::down: m_pos.y += 1; break;
 	}
 }
 

@@ -27,7 +27,7 @@ public:
 class Piece {
 	PieceType m_type;
 	std::array<PieceCell, 4> m_piece;
-	sf::Vector2i m_cur_pos;
+	sf::Vector2i m_pos;
 	sf::Vector2s m_max_offset, m_min_offset;
 
 	void getMaxMinOffset();
@@ -36,7 +36,7 @@ public:
 	PieceType getType() { return m_type; }
 	void rotate(bool right);
 	void move(Direction direction);
-	sf::Vector2i getPosition() { return m_cur_pos; }
+	sf::Vector2i getPosition() { return m_pos; }
 	sf::Vector2s getOffset(short id) { return m_piece[id].getOffset(); }
 
 	std::_Array_iterator<PieceCell, 4> begin() { return m_piece.begin(); }

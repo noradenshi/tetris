@@ -1,8 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <ctime>
-
 #include "Piece.h"
+#include "Stat.h"
 
 class GridCell : public sf::Drawable {
 	sf::RectangleShape m_box;
@@ -35,15 +35,15 @@ class Grid : public sf::Drawable {
 	Piece m_piece;
 	PiecePreview m_preview;
 
-	const float m_gravity = 800;
+	const float m_gravity = 1000;
 	float m_gravityTimer = m_gravity * 2; // entry delay
 	const sf::Time m_lockDelayTime = sf::milliseconds(100);
 	sf::Time m_lockDelay;
 	bool m_isLockable = false;
 
-	int m_level = 1;
-	int m_linesCleared = 0;
-	int m_score = 0;
+	Stat m_score;
+	Stat m_linesCleared;
+	Stat m_level = 1;
 
 	void draw(sf::RenderTarget& target, sf::RenderStates) const {
 		target.draw(m_preview);
@@ -59,4 +59,16 @@ public:
 	void rotate(bool right);
 	void move(Direction direction);
 	void nextPiece();
+	std::array<Stat, 3> getStats() {
+		return std::array<Stat, 3>{m_score, m_linesCleared, m_level};
+	}
+	Stat& getScore() {
+		return m_score;
+	}
+	Stat& getLines() {
+		return m_linesCleared;
+	}
+	Stat& getLevel() {
+		return m_level;
+	}
 };

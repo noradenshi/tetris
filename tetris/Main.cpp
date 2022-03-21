@@ -2,12 +2,19 @@
 #include <SFML/System/Clock.hpp>
 
 #include "Grid.h"
+#include "Label.h"
 
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1280, 720), "tetris");
 
 	Grid grid;
+	StatsUI statsUI;
+	//statsUI.subscribeTo(grid.getStats());
+	statsUI.subscribeToScore(grid.getScore());
+	statsUI.subscribeToLines(grid.getLines());
+	statsUI.subscribeToLevel(grid.getLevel());
+
 	sf::Clock deltaClock;
 	sf::Time deltaTime;
 
@@ -33,6 +40,7 @@ int main()
 		}
 
 		window.clear();
+		window.draw(statsUI);
 		window.draw(grid);
 		window.display();
 	}
