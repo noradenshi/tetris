@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <ctime>
+#include <map>
 #include "Piece.h"
 #include "Stat.h"
 
@@ -37,17 +38,19 @@ class Grid : public sf::Drawable {
 
 	const float m_gravity = 1000;
 	float m_gravityTimer = m_gravity * 2; // entry delay
-	const sf::Time m_lockDelayTime = sf::milliseconds(100);
+	const sf::Time m_lockDelayTime = sf::milliseconds(500);
 	sf::Time m_lockDelay;
 	bool m_isLockable = false;
 
-	Stat m_score;
-	Stat m_linesCleared;
-	Stat m_level = 1;
+	std::map<decltype(stat_name_t), StatValue> m_stats = {
+		{score, StatValue()},
+		{lines, StatValue()},
+		{level, StatValue(1)},
+	};
 
 	void draw(sf::RenderTarget& target, sf::RenderStates) const {
 		target.draw(m_preview);
-		for (auto line : m_grid) for (auto cell : line) target.draw(cell);
+		for (auto &line : m_grid) for (auto &cell : line) target.draw(cell);
 	}
 	void updateCells(bool clear);
 	void clearLines();
@@ -59,16 +62,7 @@ public:
 	void rotate(bool right);
 	void move(Direction direction);
 	void nextPiece();
-	std::array<Stat, 3> getStats() {
-		return std::array<Stat, 3>{m_score, m_linesCleared, m_level};
-	}
-	Stat& getScore() {
-		return m_score;
-	}
-	Stat& getLines() {
-		return m_linesCleared;
-	}
-	Stat& getLevel() {
-		return m_level;
+	auto getStats() {
+		return &m_stats;
 	}
 };

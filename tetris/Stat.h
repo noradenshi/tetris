@@ -2,13 +2,18 @@
 #include <functional>
 #include <iostream>
 
-class Stat {
+enum {
+	score,
+	lines,
+	level,
+} inline stat_name_t;
+
+class StatValue {
 	int m_value = 0;
 	std::function<void(int)> m_callback = NULL;
-
 public:
-	Stat() = default;
-	Stat(int t_value) : m_value(t_value) {}
+	StatValue() = default;
+	StatValue(int t_value) : m_value(t_value) {}
 	void setCallback(std::function<void(int)> &t_func) {
 		m_callback = t_func;
 		m_callback(m_value);

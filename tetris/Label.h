@@ -17,7 +17,8 @@ class StatText  : public sf::Drawable
 public:
 	std::function<void(int)> valueCallback = [&](int t_value) {
 		m_value.setString(std::to_string(t_value));
-		m_value.setOrigin(m_value.getGlobalBounds().width * 0, m_value.getGlobalBounds().height - offset / 2);
+		m_value.setOrigin(m_value.getGlobalBounds().width // TODO: center below name
+			, m_value.getGlobalBounds().height - offset / 2);
 	};
 	StatText() { 
 		m_name.setCharacterSize(name_size);
@@ -30,7 +31,7 @@ public:
 	}
 	void setName(std::string t_string) {
 		m_name.setString(t_string);
-		m_name.setOrigin(m_name.getGlobalBounds().width * 0, m_name.getGlobalBounds().height + offset / 2);
+		m_name.setOrigin(m_name.getGlobalBounds().width, m_name.getGlobalBounds().height + offset / 2);
 	}
 	void setPosition(sf::Vector2f t_pos) {
 		m_name.setPosition(t_pos);
@@ -61,19 +62,10 @@ public:
 		m_linesCleared.setPosition(sf::Vector2f(150, 300));
 		m_level.setPosition(sf::Vector2f(150, 500));
 	}
-	void subscribeTo(std::array<Stat, 3> t_stats) {
-		t_stats[0].setCallback(m_score.valueCallback);
-		t_stats[1].setCallback(m_linesCleared.valueCallback);
-		t_stats[2].setCallback(m_level.valueCallback);
-	}
-	void subscribeToScore(Stat& stat) {
-		stat.setCallback(m_score.valueCallback);
-	}
-	void subscribeToLines(Stat& stat) {
-		stat.setCallback(m_linesCleared.valueCallback);
-	}
-	void subscribeToLevel(Stat& stat) {
-		stat.setCallback(m_level.valueCallback);
+	void subscribeTo(std::map<decltype(stat_name_t), StatValue>& t_stats) {
+		t_stats[score].setCallback(m_score.valueCallback);
+		t_stats[lines].setCallback(m_linesCleared.valueCallback);
+		t_stats[level].setCallback(m_level.valueCallback);
 	}
 };
 

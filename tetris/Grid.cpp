@@ -5,12 +5,11 @@ void GridCell::setState(bool isOccupied) {
 	m_box.setFillColor((m_isOccupied) ? sf::Color(226, 106, 226, 255) : sf::Color::White);
 }
 
-#include <iostream>
 void Grid::clearLines() {
 	int amount = 0;
 	for (int y = 0; y < height; y++) {
 		bool isClearable = true;
-		for (auto cell : m_grid[y]) 
+		for (auto &cell : m_grid[y]) 
 			if (!cell.isOccupied()) isClearable = false;
 		
 			if (isClearable) {
@@ -30,20 +29,14 @@ void Grid::clearLines() {
 		}
 	}
 	if (amount > 0) {
-		std::cout << "cleared " << amount << " lines!\n";
-		if (amount == 4) std::cout << "!!! TETRIS !!!\n";
-
-		m_linesCleared += amount;
+		m_stats[lines] += amount;
 		switch (amount) { // tetris classic values
-		case 1: m_score += 40 * m_level; break;
-		case 2: m_score += 100 * m_level; break;
-		case 3: m_score += 300 * m_level; break;
-		case 4: m_score += 1200 * m_level; break;
+		case 1: m_stats[score] += 40 * m_stats[level]; break;
+		case 2: m_stats[score] += 100 * m_stats[level]; break;
+		case 3: m_stats[score] += 300 * m_stats[level]; break;
+		case 4: m_stats[score] += 1200 * m_stats[level]; break;
 		}
-		m_level = m_linesCleared / 10 + 1; 
-		std::cout << "score: " << m_score << std::endl;
-		std::cout << "lines cleared: " << m_linesCleared << std::endl;
-		std::cout << "level: " << m_level << std::endl;
+		m_stats[level] = m_stats[lines] / 10 + 1; 
 	}
 }
 
@@ -80,7 +73,7 @@ Grid::Grid() {
 }
 
 void Grid::update(sf::Time& t_deltaTime) {
-	m_gravityTimer -= t_deltaTime.asMilliseconds() * m_level;
+	m_gravityTimer -= t_deltaTime.asMilliseconds() * m_stats[level];
 	if (m_gravityTimer <= 0.f) {
 		move(Direction::down);
 		m_gravityTimer = m_gravity;
@@ -95,15 +88,16 @@ void Grid::updateActiveCells() {
 	}
 }
 
+#include <iostream>
 bool Grid::isGood() {
-	for (auto cell : m_piece) {
+	for (auto &cell : m_piece) {
 		sf::Vector2i pos = m_piece.getPosition() + sf::Vector2i(cell.getOffset().x, cell.getOffset().y);
 
-		if (pos.y < 0) return true; // allow outside of bounds rotations
-		if (pos.x < 0 || pos.x > width - 1 || pos.y > height - 1) return false;
+		if (pos.x < 0 || pos.x > (int)width - 1 || pos.y > (int)height - 1) return false;
+		if (pos.y < 0) continue; // allow out of bounds rotations
 
 		bool isActive = false;
-		for (auto active_cell : m_activeCells) { if (pos == active_cell) isActive = true; }
+		for (auto &active_cell : m_activeCells) { if (pos == active_cell) isActive = true; }
 		if (!isActive && m_grid[pos.y][pos.x].isOccupied()) return false;
 	}
 	return true;
@@ -133,6 +127,11 @@ void Grid::move(Direction direction) {
 				updateCells(false);
 				nextPiece();
 			}
+		}
+	}
+	else { // point per soft drop performed
+		if (direction == Direction::down && m_gravityTimer > 0) {
+			m_stats[score] += 1;
 		}
 	}
 	updateCells(false);

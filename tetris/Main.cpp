@@ -10,10 +10,7 @@ int main()
 
 	Grid grid;
 	StatsUI statsUI;
-	//statsUI.subscribeTo(grid.getStats());
-	statsUI.subscribeToScore(grid.getScore());
-	statsUI.subscribeToLines(grid.getLines());
-	statsUI.subscribeToLevel(grid.getLevel());
+	statsUI.subscribeTo(*grid.getStats());
 
 	sf::Clock deltaClock;
 	sf::Time deltaTime;
