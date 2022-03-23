@@ -1,31 +1,30 @@
 ﻿  Grid.cpp
-D:\noradenshi\source\repos\tetris\tetris\Grid.cpp(21,68): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\noradenshi\source\repos\tetris\tetris\Grid.cpp(20,67): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-D:\noradenshi\source\repos\tetris\tetris\Grid.cpp(21,54): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\noradenshi\source\repos\tetris\tetris\Grid.cpp(20,53): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-D:\noradenshi\source\repos\tetris\tetris\Grid.cpp(28,53): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\noradenshi\source\repos\tetris\tetris\Grid.cpp(27,52): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-D:\noradenshi\source\repos\tetris\tetris\Grid.cpp(63,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-D:\noradenshi\source\repos\tetris\tetris\Grid.cpp(72,65): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\noradenshi\source\repos\tetris\tetris\Grid.cpp(56,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\noradenshi\source\repos\tetris\tetris\Grid.cpp(65,65): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-D:\noradenshi\source\repos\tetris\tetris\Grid.cpp(72,51): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\noradenshi\source\repos\tetris\tetris\Grid.cpp(65,51): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-  Label.cpp
   Main.cpp
   Generating Code...
   tetris.vcxproj -> D:\noradenshi\source\repos\tetris\Debug\tetris.exe

@@ -12,19 +12,19 @@ void Grid::clearLines() {
 		for (auto &cell : m_grid[y]) 
 			if (!cell.isOccupied()) isClearable = false;
 		
-			if (isClearable) {
-				amount++;
-				for (int i = y; i > 0; i--) {
-					std::swap(m_grid[i], m_grid[i - 1]);
-					for (int j = 0; j < width; j++) {
-						m_grid[i][j].setPosition(sf::Vector2f(offset_x + j, offset_y + i));
-					}
-				}
+		if (isClearable) {
+			amount++;
+			for (int i = y; i > 0; i--) {
+				std::swap(m_grid[i], m_grid[i - 1]);
 				for (int j = 0; j < width; j++) {
-					m_grid[0][j] = GridCell();
-					m_grid[0][j].setSize(cell_size);
-					m_grid[0][j].setTexture(&m_textures["cell_background"]);
-					m_grid[0][j].setPosition(sf::Vector2f(offset_x + j, offset_y));
+					m_grid[i][j].setPosition(sf::Vector2f(offset_x + j, offset_y + i));
+				}
+			}
+			for (int j = 0; j < width; j++) {
+				m_grid[0][j] = GridCell();
+				m_grid[0][j].setSize(cell_size);
+				m_grid[0][j].setTexture(&m_textures["cell_background"]);
+				m_grid[0][j].setPosition(sf::Vector2f(offset_x + j, offset_y));
 			}
 		}
 	}
@@ -36,7 +36,7 @@ void Grid::clearLines() {
 		case 3: m_stats[score] += 300 * m_stats[level]; break;
 		case 4: m_stats[score] += 1200 * m_stats[level]; break;
 		}
-		m_stats[level] = m_stats[lines] / 10 + 1; 
+		m_stats[level] = m_stats[lines] / 10 + 1;
 	}
 }
 
@@ -72,7 +72,6 @@ Grid::Grid() {
 	int piece_id = std::rand() % static_cast<int>(PieceType::all);
 	m_preview.setPreviewType(static_cast<PieceType>(piece_id)); // first piece is random, not 'o'
 	nextPiece();
-	updateCells(false);
 }
 
 void Grid::update(sf::Time& t_deltaTime) {
@@ -80,9 +79,8 @@ void Grid::update(sf::Time& t_deltaTime) {
 		m_lockDelay -= t_deltaTime;
 
 		if (m_lockDelay <= sf::milliseconds(0)) {
-			updateCells(false);
-			nextPiece();
 			m_isLockable = false;
+			nextPiece(); // not calling updateCells(false); since previous piece's blocks are already set
 		}
 	}
 	else {
@@ -90,8 +88,7 @@ void Grid::update(sf::Time& t_deltaTime) {
 
 		if (m_gravityTimer <= 0.f) {
 			move(Direction::down);
-			//if(!m_isLockable) 
-				m_gravityTimer = m_gravity;
+			m_gravityTimer = m_gravity;
 		}
 	}
 
@@ -100,14 +97,14 @@ void Grid::update(sf::Time& t_deltaTime) {
 
 void Grid::updateActiveCells() {
 	for (int i = 0; i < 4; i++) {
-		sf::Vector2i pos = m_piece.getPosition() + sf::Vector2i(m_piece.getOffset(i).x, m_piece.getOffset(i).y);
+		sf::Vector2i pos = m_piece.getPosition() + m_piece.getOffset(i);
 		m_activeCells[i] = pos;
 	}
 }
 
 bool Grid::isGood() {
 	for (auto &cell : m_piece) {
-		sf::Vector2i pos = m_piece.getPosition() + sf::Vector2i(cell.getOffset().x, cell.getOffset().y);
+		sf::Vector2i pos = m_piece.getPosition() + cell.getOffset();
 
 		if (pos.x < 0 || pos.x > (int)width - 1 || pos.y > (int)height - 1) return false;
 		if (pos.y < 0) continue; // allow out of bounds rotations
@@ -120,6 +117,9 @@ bool Grid::isGood() {
 	m_isLockable = false;
 	for (auto& cell : m_piece) {
 		sf::Vector2i pos = m_piece.getPosition() + cell.getOffset();
+		
+		if (pos.y < 0) continue; // allow out of bounds rotations
+
 		if (pos.y >= (int)height - 1 || m_grid[pos.y + 1][pos.x].isOccupied()) {
 			m_isLockable = true;
 		}
