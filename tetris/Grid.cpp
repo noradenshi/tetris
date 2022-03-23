@@ -45,7 +45,7 @@ void Grid::updateCells(bool clear) {
 	const short y = m_piece.getPosition().y;
 
 	for (int i = 0; i < 4; i++) {
-		sf::Vector2s offset = m_piece.getOffset(i);
+		sf::Vector2i offset = m_piece.getOffset(i);
 		if (y + offset.y < 0) continue;
 		m_grid[y + offset.y][x + offset.x].setTexture((clear) ? &m_textures["cell_background"] : &m_textures["cell_piece"]);
 		m_grid[y + offset.y][x + offset.x].setState(!clear);
@@ -68,17 +68,34 @@ Grid::Grid() {
 
 	m_preview.setTexture(m_textures["cell_piece"]);
 	m_preview.setPosition(m_previewPosition);
+
+	int piece_id = std::rand() % static_cast<int>(PieceType::all);
+	m_preview.setPreviewType(static_cast<PieceType>(piece_id)); // first piece is random, not 'o'
 	nextPiece();
 	updateCells(false);
 }
 
 void Grid::update(sf::Time& t_deltaTime) {
-	m_gravityTimer -= t_deltaTime.asMilliseconds() * m_stats[level];
-	if (m_gravityTimer <= 0.f) {
-		move(Direction::down);
-		m_gravityTimer = m_gravity;
+	if (m_isLockable) {
+		m_lockDelay -= t_deltaTime;
+
+		if (m_lockDelay <= sf::milliseconds(0)) {
+			updateCells(false);
+			nextPiece();
+			m_isLockable = false;
+		}
 	}
-	m_lockDelay -= t_deltaTime;
+	else {
+		m_gravityTimer -= t_deltaTime.asMilliseconds() * m_stats[level];
+
+		if (m_gravityTimer <= 0.f) {
+			move(Direction::down);
+			//if(!m_isLockable) 
+				m_gravityTimer = m_gravity;
+		}
+	}
+
+	m_stats[debug] = m_lockDelay.asMilliseconds();
 }
 
 void Grid::updateActiveCells() {
@@ -88,7 +105,6 @@ void Grid::updateActiveCells() {
 	}
 }
 
-#include <iostream>
 bool Grid::isGood() {
 	for (auto &cell : m_piece) {
 		sf::Vector2i pos = m_piece.getPosition() + sf::Vector2i(cell.getOffset().x, cell.getOffset().y);
@@ -100,6 +116,15 @@ bool Grid::isGood() {
 		for (auto &active_cell : m_activeCells) { if (pos == active_cell) isActive = true; }
 		if (!isActive && m_grid[pos.y][pos.x].isOccupied()) return false;
 	}
+
+	m_isLockable = false;
+	for (auto& cell : m_piece) {
+		sf::Vector2i pos = m_piece.getPosition() + cell.getOffset();
+		if (pos.y >= (int)height - 1 || m_grid[pos.y + 1][pos.x].isOccupied()) {
+			m_isLockable = true;
+		}
+	}
+
 	return true;
 }
 
@@ -107,7 +132,6 @@ void Grid::rotate(bool right) {
 	updateActiveCells();
 	updateCells(true);
 	m_piece.rotate(right);
-	m_isLockable = false;
 
 	if (!isGood()) m_piece.rotate(!right);
 	updateCells(false);
@@ -117,16 +141,13 @@ void Grid::move(Direction direction) {
 	updateActiveCells();
 	updateCells(true);
 	m_piece.move(direction);
-	m_isLockable = false;
 
 	if (!isGood()) {
 		m_piece.move(!direction);
 		if (direction == Direction::down) {
-			m_isLockable = true;
-			if (m_lockDelay <= sf::milliseconds(0)) {
-				updateCells(false);
-				nextPiece();
-			}
+			// previously lockable trigger
+			updateCells(false);
+			nextPiece();
 		}
 	}
 	else { // point per soft drop performed
@@ -138,6 +159,7 @@ void Grid::move(Direction direction) {
 }
 
 void Grid::nextPiece() {
+	m_isLockable = false;
 	m_lockDelay = m_lockDelayTime;
 	clearLines();
 	m_piece.setType(m_preview.getPreviewType());

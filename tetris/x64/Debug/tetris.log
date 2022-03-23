@@ -25,6 +25,4 @@ C:\Users\pracownia\noradenshi\tetris\tetris\Grid.cpp(65,51): warning C4244: "arg
           [
               T=float
           ]
-  Main.cpp
-  Generowanie kodu...
   tetris.vcxproj -> C:\Users\pracownia\noradenshi\tetris\x64\Debug\tetris.exe

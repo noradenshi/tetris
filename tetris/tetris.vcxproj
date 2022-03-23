@@ -154,13 +154,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Grid.cpp" />
-    <ClCompile Include="Label.cpp" />
+    <ClCompile Include="StatsUI.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Piece.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Grid.h" />
-    <ClInclude Include="Label.h" />
+    <ClInclude Include="StatsUI.h" />
     <ClInclude Include="Piece.h" />
     <ClInclude Include="Stat.h" />
   </ItemGroup>

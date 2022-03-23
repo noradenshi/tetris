@@ -9,7 +9,7 @@ void PieceCell::rotate(bool right) {
 void Piece::getMaxMinOffset() {
 	m_max_offset = { 0, 0 };
 	m_min_offset = { 0, 0 };
-	for (auto cell : m_piece) {
+	for (auto &cell : m_piece) {
 		m_max_offset.x = std::max(m_max_offset.x, cell.getOffset().x);
 		m_max_offset.y = std::max(m_max_offset.y, cell.getOffset().y);
 		m_min_offset.x = std::min(m_min_offset.x, cell.getOffset().x);

@@ -46,6 +46,7 @@ class Grid : public sf::Drawable {
 		{score, StatValue()},
 		{lines, StatValue()},
 		{level, StatValue(1)},
+		{debug, StatValue()},
 	};
 
 	void draw(sf::RenderTarget& target, sf::RenderStates) const {

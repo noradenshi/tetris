@@ -15,11 +15,11 @@ inline Direction operator ! (const Direction& rh) {
 }
 
 class PieceCell {
-	sf::Vector2s m_offset;
+	sf::Vector2i m_offset;
 
 public:
 	void setOffset(short x, short y) { m_offset.x = x; m_offset.y = y; }
-	sf::Vector2s getOffset() { return m_offset; }
+	sf::Vector2i getOffset() { return m_offset; }
 	void rotate(bool right);
 };
 
@@ -28,7 +28,7 @@ class Piece {
 	PieceType m_type;
 	std::array<PieceCell, 4> m_piece;
 	sf::Vector2i m_pos;
-	sf::Vector2s m_max_offset, m_min_offset;
+	sf::Vector2i m_max_offset, m_min_offset;
 
 	void getMaxMinOffset();
 public:
@@ -37,7 +37,7 @@ public:
 	void rotate(bool right);
 	void move(Direction direction);
 	sf::Vector2i getPosition() { return m_pos; }
-	sf::Vector2s getOffset(short id) { return m_piece[id].getOffset(); }
+	sf::Vector2i getOffset(short id) { return m_piece[id].getOffset(); }
 
 	std::_Array_iterator<PieceCell, 4> begin() { return m_piece.begin(); }
 	std::_Array_iterator<PieceCell, 4> end() { return m_piece.end(); }

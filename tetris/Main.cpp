@@ -2,7 +2,7 @@
 #include <SFML/System/Clock.hpp>
 
 #include "Grid.h"
-#include "Label.h"
+#include "StatsUI.h"
 
 int main()
 {

@@ -6,6 +6,7 @@ enum {
 	score,
 	lines,
 	level,
+	debug,
 } inline stat_name_t;
 
 class StatValue {
