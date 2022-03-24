@@ -7,6 +7,7 @@
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1280, 720), "tetris");
+	window.setFramerateLimit(60);
 
 	Grid grid;
 	StatsUI statsUI;

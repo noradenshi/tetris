@@ -2,7 +2,8 @@
 //#include <SFML/System/Vector2.hpp>
 #include <SFML/Graphics.hpp>
 #include <array>
-#include <iostream>
+#include <algorithm>
+#include <random>
 
 enum class PieceType {
 	o, s, z, t, l, j, i, all
@@ -13,6 +14,38 @@ enum class Direction {
 inline Direction operator ! (const Direction& rh) {
 	return static_cast<Direction>(static_cast<int>(rh) ^ 0b10);
 }
+
+class Bag {
+	std::vector<PieceType> m_queue;
+	std::random_device rd;
+
+	void generateBag() {
+		for (int i = 0; i < static_cast<int>(PieceType::all); i++) {
+			m_queue.push_back(static_cast<PieceType>(i));
+		}
+	}
+public:
+	Bag() {
+		generateBag();
+	}
+	PieceType nextPiece(){
+		PieceType back = m_queue.back();
+		m_queue.pop_back();
+		if (m_queue.size() < 1)
+			generateBag();
+		return back;
+	}
+};
+
+class BagDrawer {
+	const static int size = 2;
+	std::array<Bag, size> m_bags;
+
+public:
+	PieceType nextPiece() {
+		return m_bags[rand() % size].nextPiece();
+	}
+};
 
 class PieceCell {
 	sf::Vector2i m_offset;

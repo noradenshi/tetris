@@ -63,10 +63,10 @@ void Piece::setType(PieceType piece) {
 		m_piece[3].setOffset(1, 1);
 		break;
 	case PieceType::i:
-		m_pos = { 4, 0 };
+		m_pos = { 5, 0 };
 		m_piece[0].setOffset(0, 0);
 		m_piece[1].setOffset(-1, 0);
-		m_piece[2].setOffset(2, 0);
+		m_piece[2].setOffset(-2, 0);
 		m_piece[3].setOffset(1, 0);
 		break;
 	}

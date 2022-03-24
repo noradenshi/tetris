@@ -35,6 +35,7 @@ class Grid : public sf::Drawable {
 	const sf::Vector2f m_previewPosition = { 850, 300 };
 	Piece m_piece;
 	PiecePreview m_preview;
+	BagDrawer m_bagDrawer;
 
 	const float m_gravity = 1000;
 	float m_gravityTimer = m_gravity * 2; // entry delay

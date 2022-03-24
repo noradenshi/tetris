@@ -69,8 +69,9 @@ Grid::Grid() {
 	m_preview.setTexture(m_textures["cell_piece"]);
 	m_preview.setPosition(m_previewPosition);
 
-	int piece_id = std::rand() % static_cast<int>(PieceType::all);
-	m_preview.setPreviewType(static_cast<PieceType>(piece_id)); // first piece is random, not 'o'
+	//int piece_id = std::rand() % static_cast<int>(PieceType::all);
+	//m_preview.setPreviewType(static_cast<PieceType>(piece_id)); // first piece is random, not 'o'
+	m_preview.setPreviewType(m_bagDrawer.nextPiece());
 	nextPiece();
 }
 
@@ -163,7 +164,8 @@ void Grid::nextPiece() {
 	m_lockDelay = m_lockDelayTime;
 	clearLines();
 	m_piece.setType(m_preview.getPreviewType());
-	int piece_id = std::rand() % static_cast<int>(PieceType::all);
-	m_preview.setPreviewType(static_cast<PieceType>(piece_id));
+	//int piece_id = std::rand() % static_cast<int>(PieceType::all);
+	//m_preview.setPreviewType(static_cast<PieceType>(piece_id));
+	m_preview.setPreviewType(m_bagDrawer.nextPiece());
 	updateCells(false);
 }
