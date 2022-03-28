@@ -1,2 +1,4 @@
-**/
-!tetris/
+.vs/
+Debug/
+x64/
+tetris.sln
