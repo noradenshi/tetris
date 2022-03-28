@@ -2,4 +2,5 @@
 **/Debug/
 **/x64/
 tetris.sln
+**/*.vcxproj
 **/*.vcxproj.*
