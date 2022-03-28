@@ -80,18 +80,20 @@ void Grid::reset() {
 		}
 	}
 
-	//int piece_id = std::rand() % static_cast<int>(PieceType::all);
-	//m_preview.setPreviewType(static_cast<PieceType>(piece_id)); // first piece is random, not 'o'
 	m_preview.setPreviewType(m_bagDrawer.nextPiece());
 	nextPiece();
 }
 
 void Grid::update(sf::Time& t_deltaTime) {
 
+	int activeDirections = m_isMoving[0] + m_isMoving[1] + m_isMoving[2];
 	if (m_isMoving[0] | m_isMoving[1] | m_isMoving[2]) {
 		if (m_DAS <= sf::milliseconds(0)) {
 			for (int i = 0; i < 3; i++) {
-				if(m_isMoving[i]) move(static_cast<Direction>(i));
+				if (m_isMoving[i]) {
+					if (activeDirections > 1 && i == 1 &&  m_isLockable) continue; // allow to slide while soft droping
+					move(static_cast<Direction>(i));
+				}
 			}
 			m_DAS = (m_wasMoving) ? m_DAS_delay : m_DAS_initial;
 		}
@@ -108,7 +110,7 @@ void Grid::update(sf::Time& t_deltaTime) {
 
 		if (m_lockDelay <= sf::milliseconds(0)) {
 			m_isLockable = false;
-			nextPiece(); // not calling updateCells(false); since previous piece's blocks are already set
+			nextPiece();
 		}
 	}
 	else {
@@ -131,6 +133,7 @@ void Grid::updateActiveCells() {
 }
 
 bool Grid::isGood() {
+	bool isLockable = false;
 	for (auto &cell : m_piece) {
 		sf::Vector2i pos = m_piece.getPosition() + cell.getOffset();
 
@@ -140,19 +143,12 @@ bool Grid::isGood() {
 		bool isActive = false;
 		for (auto &active_cell : m_activeCells) { if (pos == active_cell) isActive = true; }
 		if (!isActive && m_grid[pos.y][pos.x].isOccupied()) return false;
-	}
-
-	m_isLockable = false;
-	for (auto& cell : m_piece) {
-		sf::Vector2i pos = m_piece.getPosition() + cell.getOffset();
-		
-		if (pos.y < 0) continue; // allow out of bounds rotations
-
+	
 		if (pos.y >= (int)height - 1 || m_grid[pos.y + 1][pos.x].isOccupied()) {
-			m_isLockable = true;
+			isLockable = true;
 		}
 	}
-
+	m_isLockable = isLockable;
 	return true;
 }
 
@@ -194,7 +190,6 @@ void Grid::move(Direction direction) {
 	if (!isGood()) {
 		m_piece.move(!direction);
 		if (direction == Direction::Down) {
-			// previously lockable trigger
 			updateCells(false);
 			nextPiece();
 		}
@@ -220,8 +215,6 @@ void Grid::nextPiece() {
 	m_lockDelay = m_lockDelayTime;
 	clearLines();
 	m_piece.setType(m_preview.getPreviewType());
-	//int piece_id = std::rand() % static_cast<int>(PieceType::all);
-	//m_preview.setPreviewType(static_cast<PieceType>(piece_id));
 	m_preview.setPreviewType(m_bagDrawer.nextPiece());
 	updateCells(false);
 }

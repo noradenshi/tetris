@@ -40,7 +40,7 @@ class Grid : public sf::Drawable {
 	// 'Gravity'
 	const float m_gravity = 1000;
 	float m_gravityTimer = m_gravity * 2; // entry delay
-	const sf::Time m_lockDelayTime = sf::milliseconds(300); // TODO: playtest, used to be 400
+	const sf::Time m_lockDelayTime = sf::milliseconds(380);
 	sf::Time m_lockDelay;
 	bool m_isLockable = false;
 	// Delayed Auto Shift
