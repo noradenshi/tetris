@@ -9,7 +9,7 @@ enum class PieceType {
 	o, s, z, t, l, j, i, all
 };
 enum class Direction {
-	left, up, right, down
+	Left, Down, Right, Up
 };
 inline Direction operator ! (const Direction& rh) {
 	return static_cast<Direction>(static_cast<int>(rh) ^ 0b10);
@@ -23,6 +23,7 @@ class Bag {
 		for (int i = 0; i < static_cast<int>(PieceType::all); i++) {
 			m_queue.push_back(static_cast<PieceType>(i));
 		}
+		std::shuffle(m_queue.begin(), m_queue.end(), rd);
 	}
 public:
 	Bag() {
@@ -35,15 +36,23 @@ public:
 			generateBag();
 		return back;
 	}
+
+	void operator = (Bag &rh) {
+		m_queue = rh.m_queue;
+	}
 };
 
 class BagDrawer {
-	const static int size = 2;
+	const static int size = 3;
 	std::array<Bag, size> m_bags;
 
 public:
 	PieceType nextPiece() {
 		return m_bags[rand() % size].nextPiece();
+	}
+
+	void operator = (BagDrawer rh) {
+		m_bags = rh.m_bags;
 	}
 };
 
@@ -55,7 +64,6 @@ public:
 	sf::Vector2i getOffset() { return m_offset; }
 	void rotate(bool right);
 };
-
 
 class Piece {
 	PieceType m_type;

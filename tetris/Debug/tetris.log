@@ -1,4 +1,5 @@
-﻿  Grid.cpp
+﻿  Binds.cpp
+  Grid.cpp
 D:\noradenshi\source\repos\tetris\tetris\Grid.cpp(20,67): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
@@ -15,12 +16,12 @@ D:\noradenshi\source\repos\tetris\tetris\Grid.cpp(27,52): warning C4244: 'argume
               T=float
           ]
 D:\noradenshi\source\repos\tetris\tetris\Grid.cpp(56,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-D:\noradenshi\source\repos\tetris\tetris\Grid.cpp(65,65): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\noradenshi\source\repos\tetris\tetris\Grid.cpp(78,65): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-D:\noradenshi\source\repos\tetris\tetris\Grid.cpp(65,51): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\noradenshi\source\repos\tetris\tetris\Grid.cpp(78,51): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float

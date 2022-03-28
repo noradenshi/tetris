@@ -83,10 +83,10 @@ void Piece::rotate(bool right) {
 
 void Piece::move(Direction direction) {
 	switch (direction) {
-	case Direction::left: m_pos.x -= 1; break;
-	case Direction::right:m_pos.x += 1; break;
-	case Direction::up: m_pos.y -= 1; break;
-	case Direction::down: m_pos.y += 1; break;
+	case Direction::Left: m_pos.x -= 1; break;
+	case Direction::Right:m_pos.x += 1; break;
+	case Direction::Up: m_pos.y -= 1; break;
+	case Direction::Down: m_pos.y += 1; break;
 	}
 }
 

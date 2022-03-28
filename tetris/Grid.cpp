@@ -29,14 +29,14 @@ void Grid::clearLines() {
 		}
 	}
 	if (amount > 0) {
-		m_stats[lines] += amount;
+		m_stats[Lines] += amount;
 		switch (amount) { // tetris classic values
-		case 1: m_stats[score] += 40 * m_stats[level]; break;
-		case 2: m_stats[score] += 100 * m_stats[level]; break;
-		case 3: m_stats[score] += 300 * m_stats[level]; break;
-		case 4: m_stats[score] += 1200 * m_stats[level]; break;
+		case 1: m_stats[Score] += 40 * m_stats[Level]; break;
+		case 2: m_stats[Score] += 100 * m_stats[Level]; break;
+		case 3: m_stats[Score] += 300 * m_stats[Level]; break;
+		case 4: m_stats[Score] += 1200 * m_stats[Level]; break;
 		}
-		m_stats[level] = m_stats[lines] / 10 + 1;
+		m_stats[Level] = m_stats[Lines] / 10 + 1;
 	}
 }
 
@@ -58,16 +58,27 @@ Grid::Grid() {
 	m_textures["cell_background"].loadFromFile("block3.png");
 	m_textures["cell_piece"].loadFromFile("block2.png");
 
+	m_preview.setTexture(m_textures["cell_piece"]);
+	m_preview.setPosition(m_previewPosition);
+
+	reset();
+}
+
+void Grid::reset() {
+
+	m_bagDrawer = BagDrawer();
+	for (auto& stat : m_stats) {
+		stat.second.reset();
+	}
+
 	for (int y = 0; y < height; y++) {
 		for (int x = 0; x < width; x++) {
 			m_grid[y][x].setSize(cell_size);
 			m_grid[y][x].setTexture(&m_textures["cell_background"]);
 			m_grid[y][x].setPosition(sf::Vector2f(offset_x + x, offset_y + y));
+			m_grid[y][x].setState(false);
 		}
 	}
-
-	m_preview.setTexture(m_textures["cell_piece"]);
-	m_preview.setPosition(m_previewPosition);
 
 	//int piece_id = std::rand() % static_cast<int>(PieceType::all);
 	//m_preview.setPreviewType(static_cast<PieceType>(piece_id)); // first piece is random, not 'o'
@@ -76,6 +87,22 @@ Grid::Grid() {
 }
 
 void Grid::update(sf::Time& t_deltaTime) {
+
+	if (m_isMoving[0] | m_isMoving[1] | m_isMoving[2]) {
+		if (m_DAS <= sf::milliseconds(0)) {
+			for (int i = 0; i < 3; i++) {
+				if(m_isMoving[i]) move(static_cast<Direction>(i));
+			}
+			m_DAS = (m_wasMoving) ? m_DAS_delay : m_DAS_initial;
+		}
+		m_DAS -= t_deltaTime;
+		m_wasMoving = true;
+	}
+	else {
+		m_DAS = sf::milliseconds(0);
+		m_wasMoving = false;
+	}
+
 	if (m_isLockable) {
 		m_lockDelay -= t_deltaTime;
 
@@ -85,15 +112,15 @@ void Grid::update(sf::Time& t_deltaTime) {
 		}
 	}
 	else {
-		m_gravityTimer -= t_deltaTime.asMilliseconds() * m_stats[level];
+		m_gravityTimer -= t_deltaTime.asMilliseconds() * m_stats[Level];
 
 		if (m_gravityTimer <= 0.f) {
-			move(Direction::down);
+			move(Direction::Down);
 			m_gravityTimer = m_gravity;
 		}
 	}
 
-	m_stats[debug] = m_lockDelay.asMilliseconds();
+	m_stats[Debug] = m_lockDelay.asMilliseconds();
 }
 
 void Grid::updateActiveCells() {
@@ -133,8 +160,29 @@ void Grid::rotate(bool right) {
 	updateActiveCells();
 	updateCells(true);
 	m_piece.rotate(right);
+	bool isWallkick = false;
 
-	if (!isGood()) m_piece.rotate(!right);
+	if (!isGood()) {
+		for (int i = 0; i < 4; i++) { // check if any wall kicks are available (one try for each directiion)
+			m_piece.move(static_cast<Direction>(i));
+			if (!isGood()) {
+				if (m_piece.getType() == PieceType::i) { // nested check for the longer side of 'i' piece
+					m_piece.move(static_cast<Direction>(i));
+					if (!isGood()) m_piece.move(!static_cast<Direction>(i));
+					else {
+						isWallkick = true;
+						break;
+					}
+				}
+				m_piece.move(!static_cast<Direction>(i));
+			}
+			else {
+				isWallkick = true;
+				break;
+			}
+		}
+		if (!isWallkick) m_piece.rotate(!right);
+	}
 	updateCells(false);
 }
 
@@ -145,18 +193,26 @@ void Grid::move(Direction direction) {
 
 	if (!isGood()) {
 		m_piece.move(!direction);
-		if (direction == Direction::down) {
+		if (direction == Direction::Down) {
 			// previously lockable trigger
 			updateCells(false);
 			nextPiece();
 		}
 	}
 	else { // point per soft drop performed
-		if (direction == Direction::down && m_gravityTimer > 0) {
-			m_stats[score] += 1;
+		if (direction == Direction::Down && m_gravityTimer > 0) {
+			m_stats[Score] += 1;
 		}
 	}
 	updateCells(false);
+}
+
+void Grid::updateInputs(Direction direction, bool state) {
+	switch (direction) {
+	case Direction::Left: m_isMoving[0] = state; break;
+	case Direction::Down: m_isMoving[1] = state; break;
+	case Direction::Right: m_isMoving[2] = state; break;
+	}
 }
 
 void Grid::nextPiece() {
