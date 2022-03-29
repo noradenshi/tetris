@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <ctime>
 #include <map>
 #include "Piece.h"
@@ -32,6 +33,8 @@ class Grid : public sf::Drawable {
 	std::array<std::array<GridCell, width>, height> m_grid;
 	std::array<sf::Vector2i, 4> m_activeCells;
 	std::map<std::string, sf::Texture> m_textures;
+	std::map<std::string, sf::SoundBuffer> m_sounds;
+	sf::Sound m_sfx;
 	// Preview
 	const sf::Vector2f m_previewPosition = { 850, 300 };
 	Piece m_piece;

@@ -55,8 +55,14 @@ void Grid::updateCells(bool clear) {
 Grid::Grid() {
 	srand(time(NULL));
 
-	m_textures["cell_background"].loadFromFile("block3.png");
-	m_textures["cell_piece"].loadFromFile("block2.png");
+	m_textures["cell_background"].loadFromFile("graphics/block3.png");
+	m_textures["cell_piece"].loadFromFile("graphics/block2.png");
+
+	m_sounds["rotate"].loadFromFile("audio/tetris rotation q.ogg");
+	m_sounds["lock"].loadFromFile("audio/tetris lock.ogg");
+	m_sounds["move"].loadFromFile("audio/tetris move.ogg");
+
+	m_sfx.setVolume(20);
 
 	m_preview.setTexture(m_textures["cell_piece"]);
 	m_preview.setPosition(m_previewPosition);
@@ -153,6 +159,8 @@ bool Grid::isGood() {
 }
 
 void Grid::rotate(bool right) {
+	m_sfx.setBuffer(m_sounds["rotate"]);
+	m_sfx.play();
 	updateActiveCells();
 	updateCells(true);
 	m_piece.rotate(right);
@@ -183,6 +191,8 @@ void Grid::rotate(bool right) {
 }
 
 void Grid::move(Direction direction) {
+	m_sfx.setBuffer(m_sounds["move"]);
+	m_sfx.play();
 	updateActiveCells();
 	updateCells(true);
 	m_piece.move(direction);
@@ -211,6 +221,8 @@ void Grid::updateInputs(Direction direction, bool state) {
 }
 
 void Grid::nextPiece() {
+	m_sfx.setBuffer(m_sounds["lock"]);
+	m_sfx.play();
 	m_isLockable = false;
 	m_lockDelay = m_lockDelayTime;
 	clearLines();

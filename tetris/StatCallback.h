@@ -16,7 +16,7 @@ class StatValue {
 public:
 	StatValue() = default;
 	StatValue(int t_value) : m_default(t_value), m_value(t_value) {}
-	void setCallback(std::function<void(int)> &t_func) {
+	void setCallback(std::function<void(int)>& t_func) {
 		m_callback = t_func;
 		m_callback(m_value);
 	}
