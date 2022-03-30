@@ -2,21 +2,23 @@
 #include <functional>
 #include <iostream>
 
-enum {
+typedef enum {
 	Score,
 	Lines,
 	Level,
 	Debug,
-} inline stat_name_t;
+} stat_name_t;
+
+typedef std::function<void(int)> callback_t;
 
 class StatValue {
 	const int m_default = 0;
 	int m_value = 0;
-	std::function<void(int)> m_callback = NULL;
+	callback_t m_callback = NULL;
 public:
 	StatValue() = default;
 	StatValue(int t_value) : m_default(t_value), m_value(t_value) {}
-	void setCallback(std::function<void(int)>& t_func) {
+	void setCallback(callback_t& t_func) {
 		m_callback = t_func;
 		m_callback(m_value);
 	}

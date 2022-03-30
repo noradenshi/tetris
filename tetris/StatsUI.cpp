@@ -31,20 +31,17 @@ void StatText::setPosition(sf::Vector2f t_pos) {
 }
 
 void StatsUI::draw(sf::RenderTarget& target, sf::RenderStates) const {
-	for (auto& stat : m_stats) {
+	for (auto& stat : m_stats)
 		target.draw(*stat.second);
-	}
 }
 
 StatsUI::StatsUI() {
 	font.loadFromFile("AlloyInk.otf");
-	for (int i = 0; i < m_stats.size(); i++) {
-		m_stats[static_cast<decltype(stat_name_t)>(i)]->setPosition(sf::Vector2f(280, 150 + 100 * i));
-	}
+	for (int i = 0; i < m_stats.size(); i++)
+		m_stats[static_cast<stat_name_t>(i)]->setPosition(sf::Vector2f(280, 150 + 100 * i));
 }
 
-void StatsUI::subscribeTo(std::map<decltype(stat_name_t), StatValue>& t_stats) {
-	for (auto& stat : m_stats) {
+void StatsUI::subscribeTo(std::map<stat_name_t, StatValue>& t_stats) {
+	for (auto& stat : m_stats)
 		t_stats[stat.first].setCallback(stat.second->valueCallback);
-	}
 }

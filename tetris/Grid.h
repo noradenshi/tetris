@@ -5,6 +5,7 @@
 #include <map>
 #include "Piece.h"
 #include "StatCallback.h"
+#include "SFX.h"
 
 class GridCell : public sf::Drawable {
 	sf::RectangleShape m_box;
@@ -33,8 +34,6 @@ class Grid : public sf::Drawable {
 	std::array<std::array<GridCell, width>, height> m_grid;
 	std::array<sf::Vector2i, 4> m_activeCells;
 	std::map<std::string, sf::Texture> m_textures;
-	std::map<std::string, sf::SoundBuffer> m_sounds;
-	sf::Sound m_sfx;
 	// Preview
 	const sf::Vector2f m_previewPosition = { 850, 300 };
 	Piece m_piece;
@@ -53,7 +52,7 @@ class Grid : public sf::Drawable {
 	bool m_isMoving[3] = { false, false, false }; // left, down, right ; 'up' not considered
 	bool m_wasMoving = false;
 
-	std::map<decltype(stat_name_t), StatValue> m_stats = {
+	std::map<stat_name_t, StatValue> m_stats = {
 		{Score, StatValue()},
 		{Lines, StatValue()},
 		{Level, StatValue(1)},

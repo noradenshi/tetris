@@ -12,7 +12,7 @@ class StatText : public sf::Drawable
 	
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates) const;
 public:
-	std::function<void(int)> valueCallback = [&m_value = m_value, &offset = offset](int t_value) {
+	callback_t valueCallback = [&m_value = m_value, &offset = offset](int t_value) {
 		m_value.setString(std::to_string(t_value));
 		m_value.setOrigin(m_value.getGlobalBounds().width / 2 // TODO: center below name
 			, m_value.getGlobalBounds().height - offset / 2);
@@ -27,7 +27,7 @@ public:
 
 class StatsUI : public sf::Drawable {
 	sf::Font font;
-	std::map<decltype(stat_name_t), StatText*> m_stats = {
+	std::map<stat_name_t, StatText*> m_stats = {
 		{Score, new StatText(font, "Score")},
 		{Lines, new StatText(font, "Lines")},
 		{Level, new StatText(font, "Level")},
@@ -37,5 +37,5 @@ class StatsUI : public sf::Drawable {
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates) const;
 public:
 	StatsUI();
-	void subscribeTo(std::map<decltype(stat_name_t), StatValue>& t_stats);
+	void subscribeTo(std::map<stat_name_t, StatValue>& t_stats);
 };
