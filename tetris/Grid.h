@@ -6,6 +6,7 @@
 #include "Piece.h"
 #include "StatCallback.h"
 #include "SFX.h"
+#include "Textures.h"
 
 class GridCell : public sf::Drawable {
 	sf::RectangleShape m_box;
@@ -33,7 +34,6 @@ class Grid : public sf::Drawable {
 	const static unsigned short offset_y = 2;
 	std::array<std::array<GridCell, width>, height> m_grid;
 	std::array<sf::Vector2i, 4> m_activeCells;
-	std::map<std::string, sf::Texture> m_textures;
 	// Preview
 	const sf::Vector2f m_previewPosition = { 850, 300 };
 	Piece m_piece;
@@ -42,7 +42,7 @@ class Grid : public sf::Drawable {
 	// 'Gravity'
 	const float m_gravity = 1000;
 	float m_gravityTimer = m_gravity * 2; // entry delay
-	const sf::Time m_lockDelayTime = sf::milliseconds(380);
+	const sf::Time m_lockDelayTime = sf::milliseconds(320);
 	sf::Time m_lockDelay;
 	bool m_isLockable = false;
 	// Delayed Auto Shift
@@ -51,6 +51,7 @@ class Grid : public sf::Drawable {
 	sf::Time m_DAS;
 	bool m_isMoving[3] = { false, false, false }; // left, down, right ; 'up' not considered
 	bool m_wasMoving = false;
+	bool m_isRotating = false;
 
 	std::map<stat_name_t, StatValue> m_stats = {
 		{Score, StatValue()},
@@ -70,7 +71,7 @@ class Grid : public sf::Drawable {
 	bool isGood();
 public:
 	Grid();
-	void updateInputs(Direction direction, bool state);
+	void updateInputs(Direction direction, bool state, bool isRotation = false);
 	void update(sf::Time& deltaTime);
 	void rotate(bool right);
 	void nextPiece();

@@ -23,7 +23,7 @@ void Grid::clearLines() {
 			for (int j = 0; j < width; j++) {
 				m_grid[0][j] = GridCell();
 				m_grid[0][j].setSize(cell_size);
-				m_grid[0][j].setTexture(&m_textures["cell_background"]);
+				m_grid[0][j].setTexture(&nora::textures[nora::Texture::Cell_Background]);
 				m_grid[0][j].setPosition(sf::Vector2f(offset_x + j, offset_y));
 			}
 		}
@@ -47,7 +47,7 @@ void Grid::updateCells(bool clear) {
 	for (int i = 0; i < 4; i++) {
 		sf::Vector2i offset = m_piece.getOffset(i);
 		if (y + offset.y < 0) continue;
-		m_grid[y + offset.y][x + offset.x].setTexture((clear) ? &m_textures["cell_background"] : &m_textures["cell_piece"]);
+		m_grid[y + offset.y][x + offset.x].setTexture((clear) ? &nora::textures[nora::Texture::Cell_Background] : &nora::textures[nora::Texture::Cell_Piece]);
 		m_grid[y + offset.y][x + offset.x].setState(!clear);
 	}
 }
@@ -55,10 +55,7 @@ void Grid::updateCells(bool clear) {
 Grid::Grid() {
 	srand(time(NULL));
 
-	m_textures["cell_background"].loadFromFile("graphics/block3.png");
-	m_textures["cell_piece"].loadFromFile("graphics/block2.png");
-
-	m_preview.setTexture(m_textures["cell_piece"]);
+	m_preview.setTexture(nora::textures[nora::Texture::Cell_Piece]);
 	m_preview.setPosition(m_previewPosition);
 
 	reset();
@@ -74,7 +71,7 @@ void Grid::reset() {
 	for (int y = 0; y < height; y++) {
 		for (int x = 0; x < width; x++) {
 			m_grid[y][x].setSize(cell_size);
-			m_grid[y][x].setTexture(&m_textures["cell_background"]);
+			m_grid[y][x].setTexture(&nora::textures[nora::Texture::Cell_Background]);
 			m_grid[y][x].setPosition(sf::Vector2f(offset_x + x, offset_y + y));
 			m_grid[y][x].setState(false);
 		}
@@ -85,7 +82,6 @@ void Grid::reset() {
 }
 
 void Grid::update(sf::Time& t_deltaTime) {
-
 	int activeDirections = m_isMoving[0] + m_isMoving[1] + m_isMoving[2];
 	if (m_isMoving[0] | m_isMoving[1] | m_isMoving[2]) {
 		if (m_DAS <= sf::milliseconds(0)) {
@@ -206,12 +202,15 @@ void Grid::move(Direction direction) {
 	updateCells(false);
 }
 
-void Grid::updateInputs(Direction direction, bool state) {
-	switch (direction) {
-	case Direction::Left: m_isMoving[0] = state; break;
-	case Direction::Down: m_isMoving[1] = state; break;
-	case Direction::Right: m_isMoving[2] = state; break;
+void Grid::updateInputs(Direction direction, bool state, bool isRotation) {
+	int direction_num = static_cast<int>(direction);
+	if (isRotation) {
+		if (state && !m_isRotating) {
+			rotate(direction_num >> 1);
+		}
+		m_isRotating = state;
 	}
+	else m_isMoving[direction_num] = state;
 }
 
 void Grid::nextPiece() {

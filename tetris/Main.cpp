@@ -9,8 +9,8 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(1280, 720), "tetris");
 	window.setFramerateLimit(60);
 	Grid grid;
-	Binds binds(grid);
-	StatsUI statsUI;
+	nora::binds.setGrid(grid);
+	nora::StatsUI statsUI;
 	statsUI.subscribeTo(*grid.getStats());
 	sf::Clock deltaClock;
 	sf::Time deltaTime;
@@ -25,8 +25,8 @@ int main()
 			if (event.key.code == sf::Keyboard::Escape) window.close();
 			switch (event.type) {
 			case sf::Event::Closed: window.close();
-			case sf::Event::KeyPressed:  binds.keyUpdate(event.key.code, true); break;
-			case sf::Event::KeyReleased: binds.keyUpdate(event.key.code, false); break;
+			case sf::Event::KeyPressed:  nora::binds.keyUpdate(event.key.code, true); break;
+			case sf::Event::KeyReleased: nora::binds.keyUpdate(event.key.code, false); break;
 			}
 		}
 

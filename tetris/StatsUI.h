@@ -3,6 +3,9 @@
 #include <functional>
 #include <map>
 #include "StatCallback.h"
+#include "common.h"
+
+_NORA_BEGIN
 
 class StatText : public sf::Drawable
 {
@@ -39,3 +42,5 @@ public:
 	StatsUI();
 	void subscribeTo(std::map<stat_name_t, StatValue>& t_stats);
 };
+
+_NORA_END

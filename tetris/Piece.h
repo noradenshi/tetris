@@ -43,7 +43,7 @@ public:
 };
 
 class BagDrawer {
-	const static int size = 3;
+	const static int size = 2;
 	std::array<Bag, size> m_bags;
 
 public:

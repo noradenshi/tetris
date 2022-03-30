@@ -1,5 +1,7 @@
 #include "StatsUI.h"
 
+_NORA_BEGIN
+
 void StatText::draw(sf::RenderTarget& target, sf::RenderStates) const {
 	target.draw(m_name);
 	target.draw(m_value);
@@ -45,3 +47,5 @@ void StatsUI::subscribeTo(std::map<stat_name_t, StatValue>& t_stats) {
 	for (auto& stat : m_stats)
 		t_stats[stat.first].setCallback(stat.second->valueCallback);
 }
+
+_NORA_END
