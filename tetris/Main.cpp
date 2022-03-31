@@ -4,6 +4,8 @@
 #include "Binds.h"
 #include "StatsUI.h"
 
+#pragma warning( disable : 6262 )
+
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1280, 720), "tetris");
@@ -24,8 +26,8 @@ int main()
 		while (window.pollEvent(event)) {
 			if (event.key.code == sf::Keyboard::Escape) window.close();
 			switch (event.type) {
-			case sf::Event::Closed: window.close();
-			case sf::Event::KeyPressed:  nora::binds.keyUpdate(event.key.code, true); break;
+			case sf::Event::Closed: window.close(); break;
+			case sf::Event::KeyPressed: nora::binds.keyUpdate(event.key.code, true); break;
 			case sf::Event::KeyReleased: nora::binds.keyUpdate(event.key.code, false); break;
 			}
 		}

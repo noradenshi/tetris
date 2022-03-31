@@ -27,7 +27,6 @@ public:
 	void setPosition(sf::Vector2f t_pos);
 };
 
-
 class StatsUI : public sf::Drawable {
 	sf::Font font;
 	std::map<stat_name_t, StatText*> m_stats = {
