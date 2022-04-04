@@ -101,9 +101,9 @@ void PiecePreview::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	target.draw(m_vertices, states);
 }
 
-void PiecePreview::setTexture(sf::Texture& t_texture) {
-	m_texture = t_texture;
-	setFillColor(sf::Color(206, 106, 206));
+void PiecePreview::setTexture(sf::Texture* t_texture) {
+	m_texture = *t_texture;
+	//setFillColor(sf::Color(206, 106, 206));
 }
 
 void PiecePreview::setPreviewType(PieceType piece) {
@@ -127,7 +127,7 @@ void PiecePreview::setPreviewType(PieceType piece) {
 	case PieceType::t: setFillColor(sf::Color::Magenta); break;
 	case PieceType::l: setFillColor(sf::Color(255, 128, 0)); break;
 	case PieceType::j: setFillColor(sf::Color(128, 0, 128)); break;
-	case PieceType::i: setFillColor(sf::Color::Cyan); break;
+	case PieceType::i: setFillColor(sf::Color::Cyan); break; 
 	}
 }
 

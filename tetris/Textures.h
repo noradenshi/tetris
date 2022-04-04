@@ -8,6 +8,7 @@ _NORA_BEGIN
 enum class Texture {
 	Cell_Background,
 	Cell_Piece,
+	Background,
 };
 
 class Textures
@@ -16,6 +17,7 @@ class Textures
 
 public:
 	Textures() {
+		m_textures[Texture::Background].loadFromFile("graphics/background.png");
 		m_textures[Texture::Cell_Background].loadFromFile("graphics/block3.png");
 		m_textures[Texture::Cell_Piece].loadFromFile("graphics/block2.png");
 	}

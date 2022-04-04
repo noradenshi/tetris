@@ -93,7 +93,7 @@ class PiecePreview : private Piece, public sf::Drawable, public sf::Transformabl
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 public:
 	PiecePreview();
-	void setTexture(sf::Texture& t_texture);
+	void setTexture(sf::Texture* t_texture);
 	void setPreviewType(PieceType piece);
 	void setFillColor(sf::Color t_color);
 	PieceType getPreviewType() { return getType(); }

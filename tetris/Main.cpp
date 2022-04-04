@@ -17,6 +17,9 @@ int main()
 	sf::Clock deltaClock;
 	sf::Time deltaTime;
 
+	sf::RectangleShape m_background = sf::RectangleShape({ 1280, 720 });
+	m_background.setTexture(&nora::textures[nora::Texture::Background]);
+
 	while(window.isOpen())
 	{
 		deltaTime = deltaClock.restart();
@@ -33,6 +36,7 @@ int main()
 		}
 
 		window.clear();
+		window.draw(m_background);
 		window.draw(statsUI);
 		window.draw(grid);
 		window.display();

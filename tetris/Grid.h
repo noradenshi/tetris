@@ -36,7 +36,7 @@ class Grid : public sf::Drawable {
 	std::array<std::array<GridCell, width>, height> m_grid;
 	std::array<sf::Vector2i, 4> m_activeCells;
 	// Preview
-	const sf::Vector2f m_previewPosition = { 850, 200 };
+	const sf::Vector2f m_previewPosition = { 900, 200 };
 	std::array<PiecePreview, 3> m_preview;
 	sf::Color m_color;
 	Piece m_piece;

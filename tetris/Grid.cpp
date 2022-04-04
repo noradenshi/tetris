@@ -2,7 +2,7 @@
 
 void GridCell::setState(bool isOccupied) {
 	m_isOccupied = isOccupied;
-	if (!isOccupied) m_box.setFillColor(sf::Color::White);
+	if (!isOccupied) m_box.setFillColor(sf::Color(255, 255, 255, 150));
 }
 
 void GridCell::setColor(sf::Color t_color) {
@@ -27,6 +27,7 @@ void Grid::clearLines() {
 			for (int j = 0; j < width; j++) {
 				m_grid[0][j] = GridCell();
 				m_grid[0][j].setSize(cell_size);
+				m_grid[0][j].setState(false);
 				m_grid[0][j].setTexture(&nora::textures[nora::Texture::Cell_Background]);
 				m_grid[0][j].setPosition(sf::Vector2f(offset_x + j, offset_y));
 			}
@@ -60,9 +61,10 @@ void Grid::updateCells(bool clear) {
 Grid::Grid() {
 	srand(time(NULL));
 
+	m_preview[0].setScale(1.1f, 1.1f);
 	for (int i = 0; i < m_preview.size(); i++) {
-		m_preview[i].setTexture(nora::textures[nora::Texture::Cell_Piece]);
-		m_preview[i].setPosition(m_previewPosition.x, m_previewPosition.y + 100.f * i);
+		m_preview[i].setTexture(&nora::textures[nora::Texture::Cell_Piece]);
+		m_preview[i].setPosition(m_previewPosition.x, m_previewPosition.y + 150.f * i);
 	}
 
 	reset();
