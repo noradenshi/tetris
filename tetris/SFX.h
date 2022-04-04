@@ -7,15 +7,20 @@
 _NORA_BEGIN
 
 enum class Sound {
-	Rotate,
 	Move,
-	Lock,
+	Rotate,
+	Lock_0,
+	Lock_1,
+	Lock_2,
+	Lock_3,
+	Lock_4,
+	Lock_5,
 };
 
 class SFX
 {
 	std::map<nora::Sound, sf::SoundBuffer> m_sounds;
-	std::array<sf::Sound, 20> m_sources;
+	std::array<sf::Sound, 100> m_sources;
 	int m_nextID = 0;
 
 public:

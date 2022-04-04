@@ -66,6 +66,7 @@ public:
 };
 
 class Piece {
+protected:
 	PieceType m_type;
 	std::array<PieceCell, 4> m_piece;
 	sf::Vector2i m_pos;
@@ -96,4 +97,10 @@ public:
 	void setPreviewType(PieceType piece);
 	void setFillColor(sf::Color t_color);
 	PieceType getPreviewType() { return getType(); }
+	sf::Color getFillColor() { return m_vertices[0].color; }
+
+	void operator = (PiecePreview rh) {
+		setPreviewType(rh.getPreviewType());
+		setFillColor(rh.getFillColor());
+	}
 };

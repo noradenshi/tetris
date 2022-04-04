@@ -2,7 +2,11 @@
 
 void GridCell::setState(bool isOccupied) {
 	m_isOccupied = isOccupied;
-	m_box.setFillColor((m_isOccupied) ? sf::Color(226, 106, 226, 255) : sf::Color::White);
+	if (!isOccupied) m_box.setFillColor(sf::Color::White);
+}
+
+void GridCell::setColor(sf::Color t_color) {
+	m_box.setFillColor(t_color);
 }
 
 void Grid::clearLines() {
@@ -49,14 +53,17 @@ void Grid::updateCells(bool clear) {
 		if (y + offset.y < 0) continue;
 		m_grid[y + offset.y][x + offset.x].setTexture((clear) ? &nora::textures[nora::Texture::Cell_Background] : &nora::textures[nora::Texture::Cell_Piece]);
 		m_grid[y + offset.y][x + offset.x].setState(!clear);
+		if (!clear) m_grid[y + offset.y][x + offset.x].setColor(m_color);
 	}
 }
 
 Grid::Grid() {
 	srand(time(NULL));
 
-	m_preview.setTexture(nora::textures[nora::Texture::Cell_Piece]);
-	m_preview.setPosition(m_previewPosition);
+	for (int i = 0; i < m_preview.size(); i++) {
+		m_preview[i].setTexture(nora::textures[nora::Texture::Cell_Piece]);
+		m_preview[i].setPosition(m_previewPosition.x, m_previewPosition.y + 100.f * i);
+	}
 
 	reset();
 }
@@ -77,7 +84,8 @@ void Grid::reset() {
 		}
 	}
 
-	m_preview.setPreviewType(m_bagDrawer.nextPiece());
+	for(auto& preview : m_preview)
+		preview.setPreviewType(m_bagDrawer.nextPiece());
 	nextPiece();
 }
 
@@ -214,12 +222,19 @@ void Grid::updateInputs(Direction direction, bool state, bool isRotation) {
 }
 
 void Grid::nextPiece() {
-	nora::sfx.play(nora::Sound::Lock);
+	//nora::sfx.play(nora::Sound::Lock);
+	//int sound = std::rand()%6 + (int)nora::Sound::Lock_0;
+	//nora::sfx.play((nora::Sound)sound);
+
 
 	m_isLockable = false;
 	m_lockDelay = m_lockDelayTime;
 	clearLines();
-	m_piece.setType(m_preview.getPreviewType());
-	m_preview.setPreviewType(m_bagDrawer.nextPiece());
+	m_piece.setType(m_preview[0].getPreviewType());
+	m_color = m_preview[0].getFillColor();
+	for (int i = 0; i < m_preview.size() - 1; i++) {
+		m_preview[i] = m_preview[i + 1];
+	}
+	m_preview[m_preview.size()-1].setPreviewType(m_bagDrawer.nextPiece());
 	updateCells(false);
 }

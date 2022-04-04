@@ -120,6 +120,15 @@ void PiecePreview::setPreviewType(PieceType piece) {
 		quad[2].texCoords = sf::Vector2f(m_texture.getSize().x, m_texture.getSize().y);
 		quad[3].texCoords = sf::Vector2f(0, m_texture.getSize().y);
 	}
+	switch (m_type) {
+	case PieceType::o: setFillColor(sf::Color::Yellow); break;
+	case PieceType::s: setFillColor(sf::Color::Green); break;
+	case PieceType::z: setFillColor(sf::Color::Red); break;
+	case PieceType::t: setFillColor(sf::Color::Magenta); break;
+	case PieceType::l: setFillColor(sf::Color(255, 128, 0)); break;
+	case PieceType::j: setFillColor(sf::Color(128, 0, 128)); break;
+	case PieceType::i: setFillColor(sf::Color::Cyan); break;
+	}
 }
 
 void PiecePreview::setFillColor(sf::Color t_color) {

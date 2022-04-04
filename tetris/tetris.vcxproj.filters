@@ -59,7 +59,7 @@
     <ClInclude Include="common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-        <ClCompile Include="Textures.h">
+    <ClCompile Include="Textures.h">
       <Filter>Header Files</Filter>
     </ClCompile>
   </ItemGroup>

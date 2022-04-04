@@ -22,6 +22,7 @@ public:
 	void setTexture(sf::Texture* t_texture) { m_box.setTexture(t_texture); }
 	void setPosition(sf::Vector2f t_pos) { m_box.setPosition(t_pos * m_size); }
 	void setState(bool isOccupied);
+	void setColor(sf::Color t_color);
 	bool isOccupied() { return m_isOccupied; }
 };
 
@@ -35,9 +36,10 @@ class Grid : public sf::Drawable {
 	std::array<std::array<GridCell, width>, height> m_grid;
 	std::array<sf::Vector2i, 4> m_activeCells;
 	// Preview
-	const sf::Vector2f m_previewPosition = { 850, 300 };
+	const sf::Vector2f m_previewPosition = { 850, 200 };
+	std::array<PiecePreview, 3> m_preview;
+	sf::Color m_color;
 	Piece m_piece;
-	PiecePreview m_preview;
 	BagDrawer m_bagDrawer;
 	// 'Gravity'
 	const float m_gravity = 1000;
@@ -61,7 +63,7 @@ class Grid : public sf::Drawable {
 	};
 
 	void draw(sf::RenderTarget& target, sf::RenderStates) const {
-		target.draw(m_preview);
+		for(auto &preview: m_preview) target.draw(preview);
 		for (auto &line : m_grid) for (auto &cell : line) target.draw(cell);
 	}
 	void updateCells(bool clear);
