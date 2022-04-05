@@ -187,6 +187,9 @@ void Grid::rotate(bool right) {
 		}
 		if (!isWallkick) m_piece.rotate(!right);
 	}
+	else {
+		m_lockDelay = m_lockDelayTime;
+	}
 	updateCells(false);
 }
 
@@ -227,10 +230,8 @@ void Grid::updateInputs(Direction direction, bool state, bool isRotation) {
 }
 
 void Grid::nextPiece() {
-	//nora::sfx.play(nora::Sound::Lock);
 	//int sound = std::rand()%6 + (int)nora::Sound::Lock_0;
 	//nora::sfx.play((nora::Sound)sound);
-
 
 	m_isLockable = false;
 	m_lockDelay = m_lockDelayTime;

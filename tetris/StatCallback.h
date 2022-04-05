@@ -2,7 +2,8 @@
 #include <functional>
 #include <iostream>
 
-typedef enum {
+#pragma warning (disable : 26812)
+typedef enum { 
 	Score,
 	Lines,
 	Level,
