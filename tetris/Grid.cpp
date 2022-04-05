@@ -204,7 +204,10 @@ void Grid::move(Direction direction) {
 			nextPiece();
 		}
 	}
-	else { // point per soft drop performed
+	else { 
+		m_lockDelay = m_lockDelayTime;
+		
+		// point per soft drop performed
 		if (direction == Direction::Down && m_gravityTimer > 0) {
 			m_stats[Score] += 1;
 		}
