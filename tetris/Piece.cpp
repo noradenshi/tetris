@@ -91,6 +91,8 @@ void Piece::move(Direction direction) {
 }
 
 PiecePreview::PiecePreview() {
+	m_shader.loadFromFile("Shaders/bloom_vertex.glsl", "Shaders/bloom_fragment.glsl");
+
 	m_vertices.setPrimitiveType(sf::Quads);
 	m_vertices.resize(4 * 4); // 4 blocks, 4 vertices each
 }
@@ -98,11 +100,19 @@ PiecePreview::PiecePreview() {
 void PiecePreview::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	states.transform *= getTransform();
 	states.texture = &m_texture;
+	states.shader = &m_shader;
 	target.draw(m_vertices, states);
 }
 
 void PiecePreview::setTexture(sf::Texture* t_texture) {
 	m_texture = *t_texture;
+
+	m_shader.setUniform("texture", sf::Shader::CurrentTexture);
+	m_shader.setUniform("brightPassThreshold", 0.1f);
+	m_shader.setUniform("transform", sf::Glsl::Mat4(getTransform()));
+	m_shader.setUniform("texMatrix", sf::Glsl::Mat4(getTransform().getMatrix()));
+	m_shader.setUniform("color", sf::Glsl::Vec4(sf::Color::White));
+
 	//setFillColor(sf::Color(206, 106, 206));
 }
 
@@ -122,11 +132,11 @@ void PiecePreview::setPreviewType(PieceType piece) {
 	}
 	switch (m_type) {
 	case PieceType::o: setFillColor(sf::Color::Yellow); break;
-	case PieceType::s: setFillColor(sf::Color::Green); break;
-	case PieceType::z: setFillColor(sf::Color::Red); break;
+	case PieceType::s: setFillColor(sf::Color(144, 245, 0)); break;
+	case PieceType::z: setFillColor(sf::Color(255, 30, 105)); break;
 	case PieceType::t: setFillColor(sf::Color::Magenta); break;
 	case PieceType::l: setFillColor(sf::Color(255, 128, 0)); break;
-	case PieceType::j: setFillColor(sf::Color(128, 0, 128)); break;
+	case PieceType::j: setFillColor(sf::Color(164, 66, 220)); break;
 	case PieceType::i: setFillColor(sf::Color::Cyan); break; 
 	}
 }

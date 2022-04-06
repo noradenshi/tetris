@@ -89,6 +89,7 @@ class PiecePreview : private Piece, public sf::Drawable, public sf::Transformabl
 	const int m_blockSize = 30;
 	sf::VertexArray m_vertices;
 	sf::Texture m_texture;
+	sf::Shader m_shader;
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 public:
@@ -99,7 +100,7 @@ public:
 	PieceType getPreviewType() { return getType(); }
 	sf::Color getFillColor() { return m_vertices[0].color; }
 
-	void operator = (PiecePreview rh) {
+	void operator = (PiecePreview& rh) {
 		setPreviewType(rh.getPreviewType());
 		setFillColor(rh.getFillColor());
 	}
