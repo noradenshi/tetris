@@ -89,7 +89,6 @@ class PiecePreview : private Piece, public sf::Drawable, public sf::Transformabl
 	const int m_blockSize = 30;
 	sf::VertexArray m_vertices;
 	sf::Texture m_texture;
-	sf::Shader m_shader;
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 public:

@@ -3,22 +3,20 @@
 _NORA_BEGIN
 
 SFX::SFX() {
-	m_sounds[Sound::Move].loadFromFile("audio/unsure.wav");
+	m_sounds[Sound::Move].loadFromFile("audio/ttr_move_mono.wav");
 	m_sounds[Sound::Rotate].loadFromFile("audio/flap.wav");
-	m_sounds[Sound::Lock_0].loadFromFile("audio/point_ch1.ogg");
-	m_sounds[Sound::Lock_1].loadFromFile("audio/point_ch2.ogg");
-	m_sounds[Sound::Lock_2].loadFromFile("audio/point_ch3.ogg");
-	m_sounds[Sound::Lock_3].loadFromFile("audio/point_ch4.ogg");
-	m_sounds[Sound::Lock_4].loadFromFile("audio/point_ch5.ogg");
-	m_sounds[Sound::Lock_5].loadFromFile("audio/point_ch6.ogg");
-	//m_sounds[Sound::Lock].loadFromFile("audio/flap.wav");
-	//m_sounds[Sound::Rotate].loadFromFile("audio/tetris rotation q.ogg");
-	//m_sounds[Sound::Lock].loadFromFile("audio/tetris lock.ogg");
-
-	setVolume(50);
+	m_sounds[Sound::Lock].loadFromFile("audio/ttr_lock_mono.wav");
 }
 
-void SFX::play(nora::Sound t_sound) {
+void SFX::play(nora::Sound t_sound, float t_pos) {
+	float pan = t_pos - 0.5f;
+	pan /= 2;
+	std::cout << "pan: " << pan << std::endl;
+	m_sources[m_nextID].setAttenuation(10.f);
+	m_sources[m_nextID].setMinDistance(1.f);
+	m_sources[m_nextID].setRelativeToListener(true);
+	m_sources[m_nextID].setPosition(pan, 0, pan < 0.f ? -pan - 1.f : pan - 1.f);
+
 	m_sources[m_nextID].setBuffer(m_sounds[t_sound]);
 	m_sources[m_nextID].play();
 	m_nextID++;

@@ -20,6 +20,17 @@ int main()
 	sf::RectangleShape m_background = sf::RectangleShape({ 1280, 720 });
 	m_background.setTexture(&nora::textures[nora::Texture::Background]);
 
+	sf::Shader m_shader;
+	m_shader.loadFromFile("shaders/shader.frag", sf::Shader::Fragment);
+	m_shader.setUniform("exposure", 0.75f);
+	m_shader.setUniform("decay", 0.75f);
+	m_shader.setUniform("density", 0.05f);
+	m_shader.setUniform("weight", 0.4f);
+	m_shader.setUniform("lightPositionOnScreen", sf::Vector2f(0.5f, 0.5f));
+	m_shader.setUniform("myTexture", sf::Shader::CurrentTexture);
+	sf::RenderStates renderState;
+	renderState.shader = &m_shader;
+
 	while(window.isOpen())
 	{
 		deltaTime = deltaClock.restart();
@@ -36,7 +47,7 @@ int main()
 		}
 
 		window.clear();
-		window.draw(m_background);
+		window.draw(m_background, renderState);
 		window.draw(statsUI);
 		window.draw(grid);
 		window.display();

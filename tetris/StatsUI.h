@@ -9,7 +9,7 @@ _NORA_BEGIN
 
 class StatText : public sf::Drawable
 {
-	const int name_size = 25, value_size = 30;
+	const int name_size = 35, value_size = 40;
 	const float offset = 40.f;
 	sf::Text m_name, m_value;
 	

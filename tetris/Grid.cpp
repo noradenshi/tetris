@@ -2,7 +2,7 @@
 
 void GridCell::setState(bool isOccupied) {
 	m_isOccupied = isOccupied;
-	if (!isOccupied) m_box.setFillColor(sf::Color(255, 255, 255, 150));
+	if (!isOccupied) m_box.setFillColor(sf::Color(255, 255, 255, 10));
 }
 
 void GridCell::setColor(sf::Color t_color) {
@@ -159,7 +159,7 @@ bool Grid::isGood() {
 }
 
 void Grid::rotate(bool right) {
-	nora::sfx.play(nora::Sound::Rotate);
+	nora::sfx.play(nora::Sound::Rotate, m_piece.getPosition().x / (float)width);
 
 	updateActiveCells();
 	updateCells(true);
@@ -194,7 +194,7 @@ void Grid::rotate(bool right) {
 }
 
 void Grid::move(Direction direction) {
-	nora::sfx.play(nora::Sound::Move);
+	nora::sfx.play(nora::Sound::Move, m_piece.getPosition().x / (float)width);
 
 	updateActiveCells();
 	updateCells(true);
@@ -230,8 +230,6 @@ void Grid::updateInputs(Direction direction, bool state, bool isRotation) {
 }
 
 void Grid::nextPiece() {
-	//int sound = std::rand()%6 + (int)nora::Sound::Lock_0;
-	//nora::sfx.play((nora::Sound)sound);
 
 	m_isLockable = false;
 	m_lockDelay = m_lockDelayTime;
@@ -242,5 +240,7 @@ void Grid::nextPiece() {
 		m_preview[i] = m_preview[i + 1];
 	}
 	m_preview[m_preview.size()-1].setPreviewType(m_bagDrawer.nextPiece());
+	
 	updateCells(false);
+	nora::sfx.play(nora::Sound::Lock, m_piece.getPosition().x / (float)width);
 }

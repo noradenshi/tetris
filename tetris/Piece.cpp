@@ -91,8 +91,6 @@ void Piece::move(Direction direction) {
 }
 
 PiecePreview::PiecePreview() {
-	m_shader.loadFromFile("Shaders/bloom_vertex.glsl", "Shaders/bloom_fragment.glsl");
-
 	m_vertices.setPrimitiveType(sf::Quads);
 	m_vertices.resize(4 * 4); // 4 blocks, 4 vertices each
 }
@@ -100,18 +98,13 @@ PiecePreview::PiecePreview() {
 void PiecePreview::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	states.transform *= getTransform();
 	states.texture = &m_texture;
-	states.shader = &m_shader;
 	target.draw(m_vertices, states);
 }
 
 void PiecePreview::setTexture(sf::Texture* t_texture) {
 	m_texture = *t_texture;
 
-	m_shader.setUniform("texture", sf::Shader::CurrentTexture);
-	m_shader.setUniform("brightPassThreshold", 0.1f);
-	m_shader.setUniform("transform", sf::Glsl::Mat4(getTransform()));
-	m_shader.setUniform("texMatrix", sf::Glsl::Mat4(getTransform().getMatrix()));
-	m_shader.setUniform("color", sf::Glsl::Vec4(sf::Color::White));
+	//m_shader.setUniform("color", sf::Glsl::Vec4(sf::Color::White));
 
 	//setFillColor(sf::Color(206, 106, 206));
 }

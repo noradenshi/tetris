@@ -38,7 +38,7 @@ void StatsUI::draw(sf::RenderTarget& target, sf::RenderStates) const {
 }
 
 StatsUI::StatsUI() {
-	font.loadFromFile("AlloyInk.otf");
+	font.loadFromFile("graphics/Tamuragaki.ttf");
 	for (int i = 0; i < m_stats.size(); i++)
 		m_stats[static_cast<stat_name_t>(i)]->setPosition(sf::Vector2f(280, 150 + 100 * i));
 }

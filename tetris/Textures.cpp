@@ -6,7 +6,7 @@ Textures::Textures()
 {
 	m_textures[Texture::Background].loadFromFile("graphics/background.png");
 	m_textures[Texture::Cell_Background].loadFromFile("graphics/block3.png");
-	m_textures[Texture::Cell_Piece].loadFromFile("graphics/block2.png");
+	m_textures[Texture::Cell_Piece].loadFromFile("graphics/block2_n.png");
 };
 
 _NORA_END

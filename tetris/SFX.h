@@ -3,18 +3,14 @@
 #include <array>
 #include <map>
 #include "common.h"
+#include <iostream>
 
 _NORA_BEGIN
 
 enum class Sound {
 	Move,
 	Rotate,
-	Lock_0,
-	Lock_1,
-	Lock_2,
-	Lock_3,
-	Lock_4,
-	Lock_5,
+	Lock
 };
 
 class SFX
@@ -25,7 +21,7 @@ class SFX
 
 public:
 	SFX();
-	void play(nora::Sound t_sound);
+	void play(nora::Sound t_sound, float t_pos = 0.f);
 	void setVolume(int t_val);
 };
 inline SFX sfx;
